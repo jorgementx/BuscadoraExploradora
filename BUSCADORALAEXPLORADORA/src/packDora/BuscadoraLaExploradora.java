@@ -8,6 +8,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Scanner;
 
 public class BuscadoraLaExploradora {
 	
@@ -50,6 +51,7 @@ public class BuscadoraLaExploradora {
 	
 	private void buscadoraMenua() throws NumberFormatException, IOException, SQLException {
 		int aukera;
+		Teklatua teklado= getNireTeklatua();
 		System.out.println("Aukeratu egin nahi duzuna, 1-etik 7-ra");
 		System.out.println("1.- Egin erreserba");
 		System.out.println("2.- Erregistratu bezeroa");

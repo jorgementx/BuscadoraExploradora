@@ -1,4 +1,4 @@
-package packmysql;
+package packDora;
 
 import java.util.Scanner;
 
@@ -27,8 +27,7 @@ public class Teklatua{
 	}
 	
 	public String irakurriHitz() throws NumberFormatException {
-		int sar=this.sc.nextInt();
-		String hitz= Integer.toString(sar);
+		String hitz=this.sc.nextLine();
 		return hitz;
 	}
 	public void irakurriEnter() {
