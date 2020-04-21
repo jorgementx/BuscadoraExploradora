@@ -78,8 +78,7 @@ public class BuscadoraLaExploradora {
 		}	
 			
 		else if (aukera==2){
-			olaaaaaaa;
-			gktmrbjkbv;
+			
 		}
 		
 		else if (aukera==3){ 
