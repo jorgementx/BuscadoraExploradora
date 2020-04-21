@@ -59,14 +59,15 @@ public class BuscadoraLaExploradora {
 		System.out.println("1.- Egin erreserba");
 		System.out.println("2.- Erregistratu bezeroa");
 		System.out.println("3.- Erregistratu jabea");
-		System.out.println("4.- Erregistratu hiria");
-		System.out.println("5.- Lortu bezeroaren erreserbak");
-		System.out.println("6.- Lortu jabearen pisuak");
-		System.out.println("7.- Lortu hiriko pisuak");//hola soy muy tonto
+		System.out.println("4.- Erregistratu pisua");
+		System.out.println("5.- Erregistratu hiria");
+		System.out.println("6.- Lortu bezeroaren erreserbak");
+		System.out.println("7.- Lortu jabearen pisuak");
+		System.out.println("8.- Lortu hiriko pisuak");//hola soy muy tonto
 		Boolean aukeraEgokia=false;
 		while (!aukeraEgokia){
 			aukera=teklado.irakurriZenb();
-			if (aukera>=1 && aukera<=7){
+			if (aukera>=1 && aukera<=8){
 				aukeraEgokia=true;
 			}
 			else{
