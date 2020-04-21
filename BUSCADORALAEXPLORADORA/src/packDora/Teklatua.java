@@ -1,7 +1,10 @@
 package packDora;
 
 import java.util.Scanner;
-
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 public class Teklatua{
 	//atributua
 	private Scanner sc;
@@ -32,5 +35,11 @@ public class Teklatua{
 	}
 	public void irakurriEnter() {
 		this.sc.nextLine();
+	}
+	public Date irakurriData() throws ParseException{
+		String entrada=this.sc.nextLine();
+		DateFormat format = new SimpleDateFormat("DD/MM/YYYY");
+		Date data = format.parse(entrada);
+		return data;
 	}
 }

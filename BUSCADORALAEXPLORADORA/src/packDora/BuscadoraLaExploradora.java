@@ -8,10 +8,9 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.ParseException;
+import java.util.Date;
 import java.util.Scanner;
-
-import packmysql.Jokalaria;
-import packmysql.ListaJokalariak;
 
 public class BuscadoraLaExploradora {
 	
@@ -28,13 +27,13 @@ public class BuscadoraLaExploradora {
 		return nireBuscadoraLaExploradora;
 	}
 	
-	public static void main(String[] args) throws NumberFormatException, IOException, SQLException {
+	public static void main(String[] args) throws NumberFormatException, IOException, SQLException, ParseException {
 		BuscadoraLaExploradora nireBLE = new BuscadoraLaExploradora();
 		nireBLE.buscadoraHasieratu();
 		
 	}
 	
-	private void buscadoraHasieratu() throws NumberFormatException, IOException, SQLException {
+	private void buscadoraHasieratu() throws NumberFormatException, IOException, SQLException, ParseException {
 		this.konektatu();
 		br = new BufferedReader(new InputStreamReader(System.in));
 		this.buscadoraMenua();
@@ -52,8 +51,10 @@ public class BuscadoraLaExploradora {
 		}
 	}
 	
-	private void buscadoraMenua() throws NumberFormatException, IOException, SQLException {
-		int aukera;
+	private void buscadoraMenua() throws NumberFormatException, IOException, SQLException, ParseException {
+		Boolean irten=false;
+		while (!irten){
+		int aukera=10000;
 		Teklatua teklado= Teklatua.getNireTeklatua();
 		System.out.println("Aukeratu egin nahi duzuna, 1-etik 7-ra");
 		System.out.println("1.- Egin erreserba");
@@ -64,10 +65,11 @@ public class BuscadoraLaExploradora {
 		System.out.println("6.- Lortu bezeroaren erreserbak");
 		System.out.println("7.- Lortu jabearen pisuak");
 		System.out.println("8.- Lortu hiriko pisuak");//hola soy muy tonto
+		System.out.println("9.- Irten");
 		Boolean aukeraEgokia=false;
 		while (!aukeraEgokia){
 			aukera=teklado.irakurriZenb();
-			if (aukera>=1 && aukera<=8){
+			if (aukera>=1 && aukera<=9){
 				aukeraEgokia=true;
 			}
 			else{
@@ -79,7 +81,21 @@ public class BuscadoraLaExploradora {
 		}	
 			
 		else if (aukera==2){
-			
+			System.out.println("Sartu NAN-a");
+			int nan=teklado.irakurriZenb();
+			System.out.println("Sartu izena");
+			String izenaB=teklado.irakurriHitz();
+			System.out.println("Sartu lehenengo abizena");
+			String abizenaB1=teklado.irakurriHitz();
+			System.out.println("Sartu bigarren abizena");
+			String abizenaB2=teklado.irakurriHitz();
+			System.out.println("Sartu jaiotze data aaaa/mm/dd");
+			Date jaiotzeData= teklado.irakurriData();
+			System.out.println(jaiotzeData);
+			System.out.println("Sartu telefonoa");
+			int telefonoa=teklado.irakurriZenb();
+			System.out.println("sartu email-a");
+			String email=teklado.irakurriHitz();
 		}
 		
 		else if (aukera==3){ 
@@ -100,7 +116,14 @@ public class BuscadoraLaExploradora {
 		else if(aukera==7){
 			
 		}
+		else if(aukera==8){
+			
+		}
+		else if(aukera==9){
+			irten=true;
+		}
 		this.konexioa.close();
 	}
 
+}
 }
