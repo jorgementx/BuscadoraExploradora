@@ -10,6 +10,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
 
+import packmysql.Jokalaria;
+import packmysql.ListaJokalariak;
+
 public class BuscadoraLaExploradora {
 	
 	private static BuscadoraLaExploradora nireBuscadoraLaExploradora = null;
@@ -51,7 +54,7 @@ public class BuscadoraLaExploradora {
 	
 	private void buscadoraMenua() throws NumberFormatException, IOException, SQLException {
 		int aukera;
-		Teklatua teklado= getNireTeklatua();
+		Teklatua teklado= Teklatua.getNireTeklatua();
 		System.out.println("Aukeratu egin nahi duzuna, 1-etik 7-ra");
 		System.out.println("1.- Egin erreserba");
 		System.out.println("2.- Erregistratu bezeroa");
@@ -60,6 +63,42 @@ public class BuscadoraLaExploradora {
 		System.out.println("5.- Lortu bezeroaren erreserbak");
 		System.out.println("6.- Lortu jabearen pisuak");
 		System.out.println("7.- Lortu hiriko pisuak");
+		Boolean aukeraEgokia=false;
+		while (!aukeraEgokia){
+			aukera=teklado.irakurriZenb();
+			if (aukera>=1 && aukera<=7){
+				aukeraEgokia=true;
+			}
+			else{
+				System.out.println("Aukeratu 1-etik 7-rako zenbaki bat");
+			}
+		}
+		if (aukera==1){
+			
+		}	
+			
+		else if (aukera==2){
+			
+		}
+		
+		else if (aukera==3){ 
+			
+		}
+		
+		else if(aukera==4){
+			
+		}
+		else if (aukera==5){
+			
+		}
+		
+		else if (aukera==6){ 
+			
+		}
+		
+		else if(aukera==7){
+			
+		}
 		this.konexioa.close();
 	}
 
