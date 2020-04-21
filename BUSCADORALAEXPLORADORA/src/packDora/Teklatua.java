@@ -32,6 +32,5 @@ public class Teklatua{
 	}
 	public void irakurriEnter() {
 		this.sc.nextLine();
-		abduscan;
 	}
 }
