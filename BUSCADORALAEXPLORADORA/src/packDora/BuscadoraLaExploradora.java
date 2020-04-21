@@ -62,7 +62,7 @@ public class BuscadoraLaExploradora {
 		System.out.println("4.- Erregistratu hiria");
 		System.out.println("5.- Lortu bezeroaren erreserbak");
 		System.out.println("6.- Lortu jabearen pisuak");
-		System.out.println("7.- Lortu hiriko pisuak");//hola soy muy tonto
+		System.out.println("7.- Lortu hiriko pisuak");
 		Boolean aukeraEgokia=false;
 		while (!aukeraEgokia){
 			aukera=teklado.irakurriZenb();
