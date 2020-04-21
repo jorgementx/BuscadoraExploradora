@@ -34,7 +34,6 @@ public class BuscadoraLaExploradora {
 		this.konektatu();
 		br = new BufferedReader(new InputStreamReader(System.in));
 		this.buscadoraMenua();
-		
 	}
 	
 	private void konektatu() {
@@ -50,7 +49,8 @@ public class BuscadoraLaExploradora {
 	}
 	
 	private void buscadoraMenua() throws NumberFormatException, IOException, SQLException {
-		System.out.println("Aukeratu egin nahi duzuna");
+		int aukera;
+		System.out.println("Aukeratu egin nahi duzuna, 1-etik 7-ra");
 		System.out.println("1.- Egin erreserba");
 		System.out.println("2.- Erregistratu bezeroa");
 		System.out.println("3.- Erregistratu jabea");
