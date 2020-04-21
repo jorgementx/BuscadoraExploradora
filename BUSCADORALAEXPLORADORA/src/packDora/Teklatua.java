@@ -31,4 +31,7 @@ public class Teklatua{
 		String hitz= Integer.toString(sar);
 		return hitz;
 	}
+	public void irakurriEnter() {
+		this.sc.nextLine();
+	}
 }
