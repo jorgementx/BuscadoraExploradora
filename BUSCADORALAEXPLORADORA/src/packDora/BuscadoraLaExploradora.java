@@ -27,12 +27,14 @@ public class BuscadoraLaExploradora {
 	public static void main(String[] args) throws NumberFormatException, IOException, SQLException {
 		BuscadoraLaExploradora nireBLE = new BuscadoraLaExploradora();
 		nireBLE.buscadoraHasieratu();
+		
 	}
 	
 	private void buscadoraHasieratu() throws NumberFormatException, IOException, SQLException {
 		this.konektatu();
 		br = new BufferedReader(new InputStreamReader(System.in));
 		this.buscadoraMenua();
+		
 	}
 	
 	private void konektatu() {
@@ -48,8 +50,14 @@ public class BuscadoraLaExploradora {
 	}
 	
 	private void buscadoraMenua() throws NumberFormatException, IOException, SQLException {
-		System.out.println("HOLAholaHOLAholaHOLA");
-		
+		System.out.println("Aukeratu egin nahi duzuna");
+		System.out.println("1.- Egin erreserba");
+		System.out.println("2.- Erregistratu bezeroa");
+		System.out.println("3.- Erregistratu jabea");
+		System.out.println("4.- Erregistratu hiria");
+		System.out.println("5.- Lortu bezeroaren erreserbak");
+		System.out.println("6.- Lortu jabearen pisuak");
+		System.out.println("7.- Lortu hiriko pisuak");
 		this.konexioa.close();
 	}
 
