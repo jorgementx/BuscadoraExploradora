@@ -151,7 +151,6 @@ public class BuscadoraLaExploradora {
 				System.out.println("Ados.");
 				System.out.println("Enter sakatu jarraitzeko.");
 				Teklatua.getNireTeklatua().irakurriEnter();
-				
 			}
 		}
 		else {
