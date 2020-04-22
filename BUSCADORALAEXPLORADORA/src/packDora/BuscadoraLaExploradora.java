@@ -287,7 +287,7 @@ public class BuscadoraLaExploradora {
 		System.out.println("Sartu ezabatu nahi duzun erreserbaren pisuaren ID-a:");
 		int pID=Teklatua.getNireTeklatua().irakurriZenb();
 		System.out.println();
-		System.out.println("Sartu ezabatu nahi duzun erreserbaren sarrera-data (\"DD/MM/YYYY\" formatuarekin):");
+		System.out.println("Sartu ezabatu nahi duzun erreserbaren sarrera-dataren informazioa:");
 		Date pSarreraD=Teklatua.getNireTeklatua().irakurriData();
 		System.out.println(pSarreraD);
 		agindua="select * from erreserba where bezeroNan='"+pNan+"' and pisuID='"+pID+"' and sarreraD='"+pSarreraD+"';";
