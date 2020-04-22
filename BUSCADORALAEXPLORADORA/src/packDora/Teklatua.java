@@ -36,11 +36,47 @@ public class Teklatua{
 	public void irakurriEnter() {
 		this.sc.nextLine();
 	}
-	public Date irakurriData() throws ParseException{
-		String entrada=this.sc.nextLine();
-		DateFormat format = new SimpleDateFormat("DD/MM/YYYY");
-		Date data = format.parse(entrada);
-		return data;
+	public String irakurriData() throws ParseException{
+		int eguna=0;
+		int hilabetea=0;
+		int urtea=0;
+		boolean egEgokia=false;
+		boolean hilEgokia=false;
+		boolean urteEgokia=false;
+		System.out.print("Eguna: ");
+		while (!egEgokia) {
+			eguna=this.irakurriZenb();
+			if (eguna>=1 && eguna<=31) {
+				egEgokia=true;
+			}
+			else {
+				System.out.print("1 eta 31 artean dagoen zenbaki bat idatzi mesedez:");
+				System.out.println();
+			}
+		}
+		System.out.print("Hilabetea: ");
+		while (!hilEgokia) {
+			hilabetea=this.irakurriZenb();
+			if (hilabetea>=1 && hilabetea<=12) {
+				hilEgokia=true;
+			}
+			else {
+				System.out.print("1 eta 12 artean dagoen zenbaki bat idatzi mesedez:");
+				System.out.println();
+			}
+		}
+		System.out.print("Urtea: ");
+		while (!urteEgokia) {
+			urtea=this.irakurriZenb();
+			if (Integer.toString(urtea).length()==4) {
+				urteEgokia=true;
+			}
+			else {
+				System.out.print("4 digituko zenbaki bat idatzi mesedez:");
+				System.out.println();
+			}
+		}
+		return urtea+"/"+hilabetea+"/"+eguna;
 	}
 	
 	public boolean irakurriBaiEz() {

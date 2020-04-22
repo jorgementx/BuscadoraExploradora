@@ -95,7 +95,7 @@ public class BuscadoraLaExploradora {
 				System.out.println("Sartu bigarren abizena");
 				String abizenaB2=teklado.irakurriHitz();
 				System.out.println("Sartu jaiotze data dd/mm/aaaa");
-				Date jaiotzeData= teklado.irakurriData();
+				String jaiotzeData= teklado.irakurriData();
 				System.out.println(jaiotzeData);
 				System.out.println("Sartu telefonoa");
 				int telefonoa=teklado.irakurriZenb();
@@ -288,8 +288,8 @@ public class BuscadoraLaExploradora {
 		int pID=Teklatua.getNireTeklatua().irakurriZenb();
 		System.out.println();
 		System.out.println("Sartu ezabatu nahi duzun erreserbaren sarrera-dataren informazioa:");
-		Date pSarreraD=Teklatua.getNireTeklatua().irakurriData();
-		System.out.println(pSarreraD);
+		System.out.println();
+		String pSarreraD=Teklatua.getNireTeklatua().irakurriData();
 		agindua="select * from erreserba where bezeroNan='"+pNan+"' and pisuID='"+pID+"' and sarreraD='"+pSarreraD+"';";
 		ResultSet rs=st.executeQuery(agindua);
 		if (rs.first()==false) {
@@ -308,7 +308,7 @@ public class BuscadoraLaExploradora {
 			}
 		}
 		else {
-			agindua="delete from erreserba where bezeroNan='"+pNan+"' and pisuID='"+pID+"' and sarreraD='"+pSarreraD+"';";
+			agindua="delete from erreserba where bezeroNan="+pNan+" and pisuID="+pID+" and sarreraD='"+pSarreraD+"';";
 			st.execute(agindua);
 			System.out.println();
 			System.out.println("Aukeratutako erreserba modu egokian ezabatu egin da.");
