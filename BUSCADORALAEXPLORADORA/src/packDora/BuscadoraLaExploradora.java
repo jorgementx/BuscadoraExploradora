@@ -63,18 +63,22 @@ public class BuscadoraLaExploradora {
 			System.out.println("4.- Erregistratu pisua");
 			System.out.println("5.- Erregistratu hiria");
 			System.out.println("6.- Ezabatu bezeroa");
-			System.out.println("7.- Lortu bezeroaren erreserbak");
-			System.out.println("8.- Lortu jabearen pisuak");
-			System.out.println("9.- Lortu hiriko pisuak");//hola soy muy tonto
-			System.out.println("10.- Irten");
+			System.out.println("7.- Ezabatu jabea");
+			System.out.println("8.- Ezabatu hiria");
+			System.out.println("9.- Ezabatu pisua");
+			System.out.println("10.- Ezabatu erreserba");
+			System.out.println("11.- Lortu bezeroaren erreserbak");
+			System.out.println("12.- Lortu jabearen pisuak");
+			System.out.println("13.- Lortu hiriko pisuak");//hola soy muy tonto
+			System.out.println("14.- Irten");
 			Boolean aukeraEgokia=false;
 			while (!aukeraEgokia){
 				aukera=teklado.irakurriZenb();
-				if (aukera>=1 && aukera<=10){
+				if (aukera>=1 && aukera<=14){
 					aukeraEgokia=true;
 				}
 				else{
-					System.out.println("Aukeratu 1-etik 10-erako zenbaki bat");
+					System.out.println("Aukeratu 1-etik 14-rako zenbaki bat");
 				}
 			}
 			if (aukera==1){
@@ -98,36 +102,44 @@ public class BuscadoraLaExploradora {
 				System.out.println("sartu email-a");
 				String email=teklado.irakurriHitz();
 			}
-		
 			else if (aukera==3){ 
 				
 			}
-		
 			else if(aukera==4){
 				
 			}
 			else if (aukera==5){
 				
 			}
-		
 			else if (aukera==6){ 
 				this.ezabatuBezeroa();
 			}
-		
 			else if(aukera==7){
-				
+				this.ezabatuJabea();
 			}
 			else if(aukera==8){
-				
+				this.ezabatuHiria();
 			}
 			else if(aukera==9){
-				
+				this.ezabatuPisua();
 			}
 			else if(aukera==10){
+				this.ezabatuErreserba();
+			}
+			else if(aukera==11){
+				
+			}
+			else if(aukera==12){
+				
+			}
+			else if(aukera==13){
+				
+			}
+			else if(aukera==14){
 				irten=true;
-				this.konexioa.close(); //hemen egon behar da agindu hau (konexioa bakarrik itxi programatik irten nahi denean)
 			}
 		}
+		this.konexioa.close(); //hemen egon behar da agindu hau (konexioa bakarrik itxi programatik irten nahi denean)
 	}
 	
 	private void ezabatuBezeroa() throws SQLException {
@@ -158,6 +170,148 @@ public class BuscadoraLaExploradora {
 			st.execute(agindua);
 			System.out.println();
 			System.out.println("Aukeratutako bezeroa modu egokian ezabatu egin da.");
+			System.out.println("Enter sakatu jarraitzeko.");
+			Teklatua.getNireTeklatua().irakurriEnter();
+		}
+	}
+	
+	private void ezabatuJabea() throws SQLException {
+		Statement st=konexioa.createStatement();
+		String agindua;
+		System.out.println();
+		System.out.println("Sartu ezabatu nahi duzun jabearen NAN-a:");
+		int pNan=Teklatua.getNireTeklatua().irakurriZenb();
+		agindua="select * from jabea where nan="+pNan+";";
+		ResultSet rs=st.executeQuery(agindua);
+		if (rs.first()==false) {
+			System.out.println();
+			System.out.println("Ez da aurkitu jaberik zehaztutako NAN-arekin.");
+			System.out.println("Berriro saiatu nahi duzu? (B/E)");
+			boolean erantzuna=Teklatua.getNireTeklatua().irakurriBaiEz();
+			if (erantzuna==true) {
+				this.ezabatuJabea();
+			}
+			else {
+				System.out.println();
+				System.out.println("Ados.");
+				System.out.println("Enter sakatu jarraitzeko.");
+				Teklatua.getNireTeklatua().irakurriEnter();
+			}
+		}
+		else {
+			agindua="delete from jabea where nan="+pNan+";";
+			st.execute(agindua);
+			System.out.println();
+			System.out.println("Aukeratutako jabea modu egokian ezabatu egin da.");
+			System.out.println("Enter sakatu jarraitzeko.");
+			Teklatua.getNireTeklatua().irakurriEnter();
+		}
+	}
+	
+	private void ezabatuHiria() throws SQLException {
+		Statement st=konexioa.createStatement();
+		String agindua;
+		System.out.println();
+		System.out.println("Sartu ezabatu nahi duzun hiriaren izena:");
+		String pIzen=Teklatua.getNireTeklatua().irakurriHitz();
+		System.out.println();
+		System.out.println("Sartu ezabatu nahi duzun hiriaren herrialdearen izena:");
+		String pHerri=Teklatua.getNireTeklatua().irakurriHitz();
+		agindua="select * from hiria where izena='"+pIzen+"' and herrialdea='"+pHerri+"';";
+		ResultSet rs=st.executeQuery(agindua);
+		if (rs.first()==false) {
+			System.out.println();
+			System.out.println("Ez da aurkitu hiririk zehaztutako izena eta herrialdearekin.");
+			System.out.println("Berriro saiatu nahi duzu? (B/E)");
+			boolean erantzuna=Teklatua.getNireTeklatua().irakurriBaiEz();
+			if (erantzuna==true) {
+				this.ezabatuHiria();
+			}
+			else {
+				System.out.println();
+				System.out.println("Ados.");
+				System.out.println("Enter sakatu jarraitzeko.");
+				Teklatua.getNireTeklatua().irakurriEnter();
+			}
+		}
+		else {
+			agindua="delete from hiria where izena='"+pIzen+"' and herrialdea='"+pHerri+"';";
+			st.execute(agindua);
+			System.out.println();
+			System.out.println("Aukeratutako hiria modu egokian ezabatu egin da.");
+			System.out.println("Enter sakatu jarraitzeko.");
+			Teklatua.getNireTeklatua().irakurriEnter();
+		}
+	}
+	
+	private void ezabatuPisua() throws SQLException {
+		Statement st=konexioa.createStatement();
+		String agindua;
+		System.out.println();
+		System.out.println("Sartu ezabatu nahi duzun pisuaren ID-a:");
+		int pId=Teklatua.getNireTeklatua().irakurriZenb();
+		agindua="select * from pisua where id="+pId+";";
+		ResultSet rs=st.executeQuery(agindua);
+		if (rs.first()==false) {
+			System.out.println();
+			System.out.println("Ez da aurkitu pisurik zehaztutako ID-arekin.");
+			System.out.println("Berriro saiatu nahi duzu? (B/E)");
+			boolean erantzuna=Teklatua.getNireTeklatua().irakurriBaiEz();
+			if (erantzuna==true) {
+				this.ezabatuPisua();
+			}
+			else {
+				System.out.println();
+				System.out.println("Ados.");
+				System.out.println("Enter sakatu jarraitzeko.");
+				Teklatua.getNireTeklatua().irakurriEnter();
+			}
+		}
+		else {
+			agindua="delete from pisua where id="+pId+";";
+			st.execute(agindua);
+			System.out.println();
+			System.out.println("Aukeratutako pisua modu egokian ezabatu egin da.");
+			System.out.println("Enter sakatu jarraitzeko.");
+			Teklatua.getNireTeklatua().irakurriEnter();
+		}
+	}
+	
+	private void ezabatuErreserba() throws SQLException, ParseException {
+		Statement st=konexioa.createStatement();
+		String agindua;
+		System.out.println();
+		System.out.println("Sartu ezabatu nahi duzun erreserbaren bezeroaren NAN-a:");
+		int pNan=Teklatua.getNireTeklatua().irakurriZenb();
+		System.out.println();
+		System.out.println("Sartu ezabatu nahi duzun erreserbaren pisuaren ID-a:");
+		int pID=Teklatua.getNireTeklatua().irakurriZenb();
+		System.out.println();
+		System.out.println("Sartu ezabatu nahi duzun erreserbaren sarrera-data (\"DD/MM/YYYY\" formatuarekin):");
+		Date pSarreraD=Teklatua.getNireTeklatua().irakurriData();
+		System.out.println(pSarreraD);
+		agindua="select * from erreserba where bezeroNan='"+pNan+"' and pisuID='"+pID+"' and sarreraD='"+pSarreraD+"';";
+		ResultSet rs=st.executeQuery(agindua);
+		if (rs.first()==false) {
+			System.out.println();
+			System.out.println("Ez da aurkitu erreserbarik zehaztutako bezeroaren NAN-a, pisuaren ID-a eta sarrera-datarekin.");
+			System.out.println("Berriro saiatu nahi duzu? (B/E)");
+			boolean erantzuna=Teklatua.getNireTeklatua().irakurriBaiEz();
+			if (erantzuna==true) {
+				this.ezabatuErreserba();
+			}
+			else {
+				System.out.println();
+				System.out.println("Ados.");
+				System.out.println("Enter sakatu jarraitzeko.");
+				Teklatua.getNireTeklatua().irakurriEnter();
+			}
+		}
+		else {
+			agindua="delete from erreserba where bezeroNan='"+pNan+"' and pisuID='"+pID+"' and sarreraD='"+pSarreraD+"';";
+			st.execute(agindua);
+			System.out.println();
+			System.out.println("Aukeratutako erreserba modu egokian ezabatu egin da.");
 			System.out.println("Enter sakatu jarraitzeko.");
 			Teklatua.getNireTeklatua().irakurriEnter();
 		}
