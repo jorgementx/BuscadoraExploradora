@@ -42,4 +42,26 @@ public class Teklatua{
 		Date data = format.parse(entrada);
 		return data;
 	}
+	
+	public boolean irakurriBaiEz() {
+		String karakterea=this.irakurriHitz();
+		boolean egokia=false;
+		do {
+			if (karakterea.length()>1) {
+				System.out.println("Bakarrik karaktereak onartzen dira.");
+				karakterea=this.irakurriHitz();
+			}
+			else if ((karakterea.equals("b")) || (karakterea.equals("B")) || (karakterea.equals("e")) || (karakterea.equals("E"))) {
+				egokia=true;
+			}
+			else {
+				System.out.println("Bakarrik 'B' (bai) eta 'E' (ez) karaktereak onartzen dira.");
+				karakterea=this.irakurriHitz();
+			}
+		} while (!egokia);
+		if ((karakterea.equals("b")) || (karakterea.equals("B"))) {
+			return true;
+		}
+		else return false;
+	}
 }
