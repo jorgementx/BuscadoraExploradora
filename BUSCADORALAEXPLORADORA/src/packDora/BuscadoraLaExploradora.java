@@ -90,7 +90,7 @@ public class BuscadoraLaExploradora {
 				String abizenaB1=teklado.irakurriHitz();
 				System.out.println("Sartu bigarren abizena");
 				String abizenaB2=teklado.irakurriHitz();
-				System.out.println("Sartu jaiotze data aaaa/mm/dd");
+				System.out.println("Sartu jaiotze data dd/mm/aaaa");
 				Date jaiotzeData= teklado.irakurriData();
 				System.out.println(jaiotzeData);
 				System.out.println("Sartu telefonoa");
