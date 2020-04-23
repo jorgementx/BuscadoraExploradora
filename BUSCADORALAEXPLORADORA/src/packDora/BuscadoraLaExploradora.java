@@ -84,8 +84,7 @@ public class BuscadoraLaExploradora {
 			}
 			if (aukera==1){
 			
-			}	
-			
+			}
 			else if (aukera==2){
 				System.out.println("Sartu NAN-a");
 				int nan=teklado.irakurriZenb();
