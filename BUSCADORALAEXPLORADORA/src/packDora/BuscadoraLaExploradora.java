@@ -128,7 +128,7 @@ public class BuscadoraLaExploradora {
 				this.ezabatuErreserba();
 			}
 			else if(aukera==11){
-				
+				this.ordenatuBezeroak();
 			}
 			else if(aukera==12){
 				
@@ -144,6 +144,19 @@ public class BuscadoraLaExploradora {
 			}
 		}
 		this.konexioa.close(); //hemen egon behar da agindu hau (konexioa bakarrik itxi programatik irten nahi denean)
+	}
+	private void ordenatuBezeroak() throws SQLException{ 
+		/*
+		 * prueba select nan,abi1 from bezeroa order by nan,abi1;
+		 */
+		Statement st=konexioa.createStatement();
+		String agindua="select nan,abi1 from bezeroa order by nan,abi1 ";
+		ResultSet rs=st.executeQuery(agindua);
+		while(rs.next()){
+			int n=rs.getInt("nan");
+			System.out.println(n+""+"ab1="+rs.getObject("abi1"));
+			
+		}
 	}
 	
 	private void ezabatuBezeroa() throws SQLException {
