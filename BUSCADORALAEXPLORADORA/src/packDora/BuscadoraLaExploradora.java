@@ -147,7 +147,7 @@ public class BuscadoraLaExploradora {
 	private void ordenatuBezeroak() throws SQLException{ 
 		
 		Statement st=konexioa.createStatement();
-		String agindua="select nan,abi1,abi2,kostua from bezeroa,erreserba order by nan desc ,abi1,abi2,kostua desc";
+		String agindua="select nan,abi1,abi2,kostua,hirizena from bezeroa,erreserba,hiria order by nan desc ,abi1,abi2,kostua desc";
 		ResultSet rs=st.executeQuery(agindua);
 		while(rs.next()){
 			int NAN=rs.getInt("nan");
