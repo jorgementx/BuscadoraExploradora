@@ -56,7 +56,7 @@ public class BuscadoraLaExploradora {
 		while (!irten){
 			int aukera=10000;
 			Teklatua teklado= Teklatua.getNireTeklatua();
-			System.out.println("Aukeratu egin nahi duzuna, 1-etik 10-ra");
+			System.out.println("Aukeratu egin nahi duzuna, 1-etik 14-ra");
 			System.out.println("1.- Egin erreserba");
 			System.out.println("2.- Erregistratu bezeroa");
 			System.out.println("3.- Erregistratu jabea");
@@ -150,7 +150,7 @@ public class BuscadoraLaExploradora {
 		int pNan=Teklatua.getNireTeklatua().irakurriZenb();
 		agindua="select * from bezeroa where nan="+pNan+";";
 		ResultSet rs=st.executeQuery(agindua);
-		if (rs.first()==false) {
+		if (!rs.first()) {
 			System.out.println();
 			System.out.println("Ez da aurkitu bezerorik zehaztutako NAN-arekin.");
 			System.out.println("Berriro saiatu nahi duzu? (B/E)");
@@ -166,10 +166,19 @@ public class BuscadoraLaExploradora {
 			}
 		}
 		else {
-			agindua="delete from bezeroa where nan="+pNan+";";
-			st.execute(agindua);
+			agindua="select * from erreserba where bezeroNan="+pNan+";";
+			rs=st.executeQuery(agindua);
+			if (rs.first()) {
+				System.out.println();
+				System.out.println("Ezin izan da bezeroa ezabatu gutxienez erreserba batean erabiltzen delako.");
+			}
+			else {
+				agindua="delete from bezeroa where nan="+pNan+";";
+				st.execute(agindua);
+				System.out.println();
+				System.out.println("Aukeratutako bezeroa modu egokian ezabatu egin da.");
+			}
 			System.out.println();
-			System.out.println("Aukeratutako bezeroa modu egokian ezabatu egin da.");
 			System.out.println("Enter sakatu jarraitzeko.");
 			Teklatua.getNireTeklatua().irakurriEnter();
 		}
@@ -183,7 +192,7 @@ public class BuscadoraLaExploradora {
 		int pNan=Teklatua.getNireTeklatua().irakurriZenb();
 		agindua="select * from jabea where nan="+pNan+";";
 		ResultSet rs=st.executeQuery(agindua);
-		if (rs.first()==false) {
+		if (!rs.first()) {
 			System.out.println();
 			System.out.println("Ez da aurkitu jaberik zehaztutako NAN-arekin.");
 			System.out.println("Berriro saiatu nahi duzu? (B/E)");
@@ -199,10 +208,19 @@ public class BuscadoraLaExploradora {
 			}
 		}
 		else {
-			agindua="delete from jabea where nan="+pNan+";";
-			st.execute(agindua);
+			agindua="select * from pisua where jabeNan="+pNan+";";
+			rs=st.executeQuery(agindua);
+			if (rs.first()) {
+				System.out.println();
+				System.out.println("Ezin izan da jabea ezabatu gutxienez pisu batean erabiltzen delako.");
+			}
+			else {
+				agindua="delete from jabea where nan="+pNan+";";
+				st.execute(agindua);
+				System.out.println();
+				System.out.println("Aukeratutako jabea modu egokian ezabatu egin da.");
+			}
 			System.out.println();
-			System.out.println("Aukeratutako jabea modu egokian ezabatu egin da.");
 			System.out.println("Enter sakatu jarraitzeko.");
 			Teklatua.getNireTeklatua().irakurriEnter();
 		}
@@ -219,7 +237,7 @@ public class BuscadoraLaExploradora {
 		String pHerri=Teklatua.getNireTeklatua().irakurriHitz();
 		agindua="select * from hiria where izena='"+pIzen+"' and herrialdea='"+pHerri+"';";
 		ResultSet rs=st.executeQuery(agindua);
-		if (rs.first()==false) {
+		if (!rs.first()) {
 			System.out.println();
 			System.out.println("Ez da aurkitu hiririk zehaztutako izena eta herrialdearekin.");
 			System.out.println("Berriro saiatu nahi duzu? (B/E)");
@@ -235,10 +253,19 @@ public class BuscadoraLaExploradora {
 			}
 		}
 		else {
-			agindua="delete from hiria where izena='"+pIzen+"' and herrialdea='"+pHerri+"';";
-			st.execute(agindua);
+			agindua="select * from pisua where hirizena='"+pIzen+"' and hiriHerrialde='"+pHerri+"';";
+			rs=st.executeQuery(agindua);
+			if (rs.first()) {
+				System.out.println();
+				System.out.println("Ezin izan da hiria ezabatu gutxienez pisu batean erabiltzen delako.");
+			}
+			else {
+				agindua="delete from hiria where izena='"+pIzen+"' and herrialdea='"+pHerri+"';";
+				st.execute(agindua);
+				System.out.println();
+				System.out.println("Aukeratutako hiria modu egokian ezabatu egin da.");
+			}
 			System.out.println();
-			System.out.println("Aukeratutako hiria modu egokian ezabatu egin da.");
 			System.out.println("Enter sakatu jarraitzeko.");
 			Teklatua.getNireTeklatua().irakurriEnter();
 		}
@@ -252,7 +279,7 @@ public class BuscadoraLaExploradora {
 		int pId=Teklatua.getNireTeklatua().irakurriZenb();
 		agindua="select * from pisua where id="+pId+";";
 		ResultSet rs=st.executeQuery(agindua);
-		if (rs.first()==false) {
+		if (!rs.first()) {
 			System.out.println();
 			System.out.println("Ez da aurkitu pisurik zehaztutako ID-arekin.");
 			System.out.println("Berriro saiatu nahi duzu? (B/E)");
@@ -268,10 +295,19 @@ public class BuscadoraLaExploradora {
 			}
 		}
 		else {
-			agindua="delete from pisua where id="+pId+";";
-			st.execute(agindua);
+			agindua="select * from erreserba where pisuID="+pId+";";
+			rs=st.executeQuery(agindua);
+			if (rs.first()) {
+				System.out.println();
+				System.out.println("Ezin izan da pisua ezabatu gutxienez erreserba batean erabiltzen delako.");
+			}
+			else {
+				agindua="delete from pisua where id="+pId+";";
+				st.execute(agindua);
+				System.out.println();
+				System.out.println("Aukeratutako pisua modu egokian ezabatu egin da.");
+			}
 			System.out.println();
-			System.out.println("Aukeratutako pisua modu egokian ezabatu egin da.");
 			System.out.println("Enter sakatu jarraitzeko.");
 			Teklatua.getNireTeklatua().irakurriEnter();
 		}
@@ -292,7 +328,7 @@ public class BuscadoraLaExploradora {
 		String pSarreraD=Teklatua.getNireTeklatua().irakurriData();
 		agindua="select * from erreserba where bezeroNan='"+pNan+"' and pisuID='"+pID+"' and sarreraD='"+pSarreraD+"';";
 		ResultSet rs=st.executeQuery(agindua);
-		if (rs.first()==false) {
+		if (!rs.first()) {
 			System.out.println();
 			System.out.println("Ez da aurkitu erreserbarik zehaztutako bezeroaren NAN-a, pisuaren ID-a eta sarrera-datarekin.");
 			System.out.println("Berriro saiatu nahi duzu? (B/E)");
