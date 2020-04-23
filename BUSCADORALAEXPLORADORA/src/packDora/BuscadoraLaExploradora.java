@@ -56,7 +56,7 @@ public class BuscadoraLaExploradora {
 		while (!irten){
 			int aukera=10000;
 			Teklatua teklado= Teklatua.getNireTeklatua();
-			System.out.println("Aukeratu egin nahi duzuna, 1-etik 14-ra");
+			System.out.println("Aukeratu egin nahi duzuna, 1-etik 15-ra");
 			System.out.println("1.- Egin erreserba");
 			System.out.println("2.- Erregistratu bezeroa");
 			System.out.println("3.- Erregistratu jabea");
@@ -69,16 +69,17 @@ public class BuscadoraLaExploradora {
 			System.out.println("10.- Ezabatu erreserba");
 			System.out.println("11.- Lortu bezeroaren erreserbak");
 			System.out.println("12.- Lortu jabearen pisuak");
-			System.out.println("13.- Lortu hiriko pisuak");//hola soy muy tonto
-			System.out.println("14.- Irten");
+			System.out.println("13.- Lortu hiriko pisuak");
+			System.out.println("14.- Lortu mota konkretu bateko pisuak hiri konkretu batean");
+			System.out.println("15.- Irten");
 			Boolean aukeraEgokia=false;
 			while (!aukeraEgokia){
 				aukera=teklado.irakurriZenb();
-				if (aukera>=1 && aukera<=14){
+				if (aukera>=1 && aukera<=15){
 					aukeraEgokia=true;
 				}
 				else{
-					System.out.println("Aukeratu 1-etik 14-rako zenbaki bat");
+					System.out.println("Aukeratu 1-etik 15-rako zenbaki bat");
 				}
 			}
 			if (aukera==1){
@@ -136,6 +137,9 @@ public class BuscadoraLaExploradora {
 				
 			}
 			else if(aukera==14){
+				this.motaHiriBatekoPisuaLortu();
+			}
+			else if(aukera==15){
 				irten=true;
 			}
 		}
@@ -348,6 +352,63 @@ public class BuscadoraLaExploradora {
 			st.execute(agindua);
 			System.out.println();
 			System.out.println("Aukeratutako erreserba modu egokian ezabatu egin da.");
+			System.out.println("Enter sakatu jarraitzeko.");
+			Teklatua.getNireTeklatua().irakurriEnter();
+		}
+	}
+
+	private void motaHiriBatekoPisuaLortu() throws SQLException {
+		Statement st=konexioa.createStatement();
+		String agindua;
+		System.out.println();
+		System.out.println("Sartu pisuaren mota:");
+		String pMota=Teklatua.getNireTeklatua().irakurriHitz();
+		System.out.println();
+		System.out.println("Sartu pisuaren hiriaren izena:");
+		String pIzen=Teklatua.getNireTeklatua().irakurriHitz();
+		System.out.println();
+		System.out.println("Sartu pisuaren hiriaren herrialdearen izena:");
+		String pHerri=Teklatua.getNireTeklatua().irakurriHitz();
+		System.out.println();
+		agindua="select * from pisua having mota='"+pMota+"' and hirizena='"+pIzen+"' and hiriHerrialde='"+pHerri+"';";
+		ResultSet rs=st.executeQuery(agindua);
+		if (!rs.first()) {
+			System.out.println();
+			System.out.println("Ez da aurkitu pisurik zehaztutako mota, hiriaren izena eta hiriaren herrialdearen izenarekin.");
+			System.out.println("Berriro saiatu nahi duzu? (B/E)");
+			boolean erantzuna=Teklatua.getNireTeklatua().irakurriBaiEz();
+			if (erantzuna==true) {
+				this.motaHiriBatekoPisuaLortu();
+			}
+			else {
+				System.out.println();
+				System.out.println("Ados.");
+				System.out.println("Enter sakatu jarraitzeko.");
+				Teklatua.getNireTeklatua().irakurriEnter();
+			}
+		}
+		else {
+			agindua="select * from pisua having mota='"+pMota+"' and hirizena='"+pIzen+"' and hiriHerrialde='"+pHerri+"';";
+			rs=st.executeQuery(agindua);
+			while (rs.next()) {
+				int id=rs.getInt("id");
+				String mota=rs.getString("mota");
+				int prezioGau=rs.getInt("prezioGau");
+				int komunKop=rs.getInt("komunKop");
+				float m2=rs.getFloat("m2");
+				int pertsKopMax=rs.getInt("pertsKopMax");
+				String egongela=rs.getString("egongela");
+				String sukaldea=rs.getString("sukaldea");
+				String kalea=rs.getString("kalea");
+				int zenbakia=rs.getInt("zenbakia");
+				int solairua=rs.getInt("solairua");
+				char letra=rs.getString("letra").charAt(0);
+				String hirizena=rs.getString("hirizena");
+				String hiriHerrialde=rs.getString("hiriHerrialde");
+				int jabeNan=rs.getInt("jabeNan");
+				System.out.format("id: %s, mota: %s, prezioGau: %s, komunKop: %s, m2: %s, pertsKopMax: %s, egongela: %s, sukaldea: %s, kalea: %s, zenbakia: %s, solairua: %s, letra: %s, hirizena: %s, hiriHerrialde: %s, jabeNan: %s\n", id, mota, prezioGau, komunKop, m2, pertsKopMax, egongela, sukaldea, kalea, zenbakia, solairua, letra, hirizena, hiriHerrialde, jabeNan);
+			}
+			System.out.println();
 			System.out.println("Enter sakatu jarraitzeko.");
 			Teklatua.getNireTeklatua().irakurriEnter();
 		}
