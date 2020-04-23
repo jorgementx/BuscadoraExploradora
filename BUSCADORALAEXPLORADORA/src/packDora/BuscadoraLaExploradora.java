@@ -145,17 +145,28 @@ public class BuscadoraLaExploradora {
 		this.konexioa.close(); //hemen egon behar da agindu hau (konexioa bakarrik itxi programatik irten nahi denean)
 	}
 	private void ordenatuBezeroak() throws SQLException{ 
-		/*
-		 * prueba select nan,abi1 from bezeroa order by nan,abi1;
-		 */
+		
 		Statement st=konexioa.createStatement();
-		String agindua="select nan,abi1 from bezeroa order by nan,abi1 ";
+		String agindua="select nan,abi1,abi2,kostua from bezeroa,erreserba order by nan desc ,abi1,abi2,kostua desc";
+		ResultSet rs=st.executeQuery(agindua);
+		while(rs.next()){
+			int NAN=rs.getInt("nan");
+			String Abizena1=rs.getString("abi1");
+			String Abizena2=rs.getString("abi2");
+			int Kostua=rs.getInt("kostua");
+			System.out.println(" "+NAN+" "+Abizena1+" "+Abizena2+" "+Kostua);
+		}
+		System.out.println();
+		System.out.println("Enter sakatu jarraitzeko.");
+		Teklatua.getNireTeklatua().irakurriEnter();
+		/*String agindua="select nan,abi1 from bezeroa order by nan,abi1 ";
 		ResultSet rs=st.executeQuery(agindua);
 		while(rs.next()){
 			int n=rs.getInt("nan");
 			System.out.println(n+""+"ab1="+rs.getObject("abi1"));
 			
 		}
+		*/
 	}
 	
 	private void ezabatuBezeroa() throws SQLException {
