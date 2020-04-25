@@ -4,7 +4,9 @@ import java.util.Scanner;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 public class Teklatua{
 	//atributua
 	private Scanner sc;
@@ -37,46 +39,47 @@ public class Teklatua{
 		this.sc.nextLine();
 	}
 	public String irakurriData() throws ParseException{
+		String data="";
 		int eguna=0;
 		int hilabetea=0;
 		int urtea=0;
-		boolean egEgokia=false;
-		boolean hilEgokia=false;
-		boolean urteEgokia=false;
-		System.out.print("Eguna: ");
-		while (!egEgokia) {
+		boolean egokia=false;
+		while (!egokia) {
+			egokia=true;
+			System.out.print("Eguna: ");
 			eguna=this.irakurriZenb();
-			if (eguna>=1 && eguna<=31) {
-				egEgokia=true;
-			}
-			else {
-				System.out.print("1 eta 31 artean dagoen zenbaki bat idatzi mesedez:");
-				System.out.println();
-			}
-		}
-		System.out.print("Hilabetea: ");
-		while (!hilEgokia) {
+			System.out.print("Hilabetea: ");
 			hilabetea=this.irakurriZenb();
-			if (hilabetea>=1 && hilabetea<=12) {
-				hilEgokia=true;
-			}
-			else {
-				System.out.print("1 eta 12 artean dagoen zenbaki bat idatzi mesedez:");
-				System.out.println();
-			}
-		}
-		System.out.print("Urtea: ");
-		while (!urteEgokia) {
+			System.out.print("Urtea: ");
 			urtea=this.irakurriZenb();
-			if (Integer.toString(urtea).length()==4) {
-				urteEgokia=true;
-			}
-			else {
-				System.out.print("4 digituko zenbaki bat idatzi mesedez:");
-				System.out.println();
+			data=urtea+"-"+hilabetea+"-"+eguna;
+			try {
+	            SimpleDateFormat dataFormatua = new SimpleDateFormat("yyyy-MM-dd");
+	            dataFormatua.setLenient(false);
+	            dataFormatua.parse(data);
+	            Date gaur=new Date();
+				int gaurkoEguna=gaur.getDate();
+				int gaurkoHilabetea=gaur.getMonth()+1;
+				int gaurkoUrtea=gaur.getYear()+1900;
+	            String gaurkoData=gaurkoUrtea+"-"+gaurkoHilabetea+"-"+gaurkoEguna;
+	            if (gaurkoData.compareTo(data)<0) {
+	            	throw new Exception();
+	            }
+	        }
+			catch (ParseException e) {
+	        	System.out.println();
+	        	System.out.println("Sartutako data ez da egokia. Berriro saiatu:");
+	        	System.out.println();
+				egokia=false;
+	        }
+			catch (Exception e) {
+	        	System.out.println();
+	        	System.out.println("Sartutako data etorkizunekoa da. Berriro saiatu:");
+	        	System.out.println();
+				egokia=false;
 			}
 		}
-		return urtea+"/"+hilabetea+"/"+eguna;
+		return data;
 	}
 	
 	public boolean irakurriBaiEz() {
