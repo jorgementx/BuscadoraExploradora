@@ -14,6 +14,8 @@ import java.text.ParseException;
 import java.util.Date;
 import java.util.Scanner;
 
+import javax.xml.crypto.Data;
+
 public class BuscadoraLaExploradora {
 	
 	private static BuscadoraLaExploradora nireBuscadoraLaExploradora = null;
@@ -163,15 +165,17 @@ public class BuscadoraLaExploradora {
 		//ordenatu egingo ditu bezeroak eta haien erreserbak nan-a erakutsiz eta zenbateko kostua daukaten.
 		
 		Statement st=konexioa.createStatement();
-		String agindua="select nan,abi1,abi2,kostua,hirizena from bezeroa,erreserba,pisua order by nan desc ,abi1,abi2,kostua desc,hirizena";
+		String agindua="select nan,abi1,abi2,kostua,pisuId,sarreraD,hirizena from bezeroa,erreserba,pisua order by nan desc ,abi1,abi2,kostua desc,pisuId,sarreraD desc,hirizena";
 		ResultSet rs=st.executeQuery(agindua);
 		while(rs.next()){
 			int NAN=rs.getInt("nan");
 			String Abizena1=rs.getString("abi1");
 			String Abizena2=rs.getString("abi2");
 			int Kostua=rs.getInt("kostua");
+			int Pisua=rs.getInt("pisuId");
+			Date data=rs.getDate("sarreraD");
 			String Hirizena=rs.getString("hirizena");
-			System.out.println(" "+NAN+" "+Abizena1+" "+Abizena2+" "+Kostua+""+Hirizena);
+			System.out.println(" "+NAN+" "+Abizena1+" "+Abizena2+" "+Kostua+""+""+Pisua+""+data+""+Hirizena);
 		}
 		System.out.println();
 		System.out.println("Enter sakatu jarraitzeko.");
