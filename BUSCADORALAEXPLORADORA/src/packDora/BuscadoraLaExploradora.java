@@ -60,8 +60,8 @@ public class BuscadoraLaExploradora {
 			System.out.println("1.- Egin erreserba");
 			System.out.println("2.- Erregistratu bezeroa");
 			System.out.println("3.- Erregistratu jabea");
-			System.out.println("4.- Erregistratu pisua");
-			System.out.println("5.- Erregistratu hiria");
+			System.out.println("4.- Erregistratu hiria");
+			System.out.println("5.- Erregistratu pisua");
 			System.out.println("6.- Ezabatu bezeroa");
 			System.out.println("7.- Ezabatu jabea");
 			System.out.println("8.- Ezabatu hiria");
@@ -86,29 +86,16 @@ public class BuscadoraLaExploradora {
 			
 			}
 			else if (aukera==2){
-				System.out.println("Sartu NAN-a");
-				int nan=teklado.irakurriZenb();
-				System.out.println("Sartu izena");
-				String izenaB=teklado.irakurriHitz();
-				System.out.println("Sartu lehenengo abizena");
-				String abizenaB1=teklado.irakurriHitz();
-				System.out.println("Sartu bigarren abizena");
-				String abizenaB2=teklado.irakurriHitz();
-				System.out.println("Sartu jaiotze data dd/mm/aaaa");
-				String jaiotzeData= teklado.irakurriData();
-				System.out.println("Sartu telefonoa");
-				int telefonoa=teklado.irakurriZenb();
-				System.out.println("sartu email-a");
-				String email=teklado.irakurriHitz();
+				this.sartuBezeroa();
 			}
 			else if (aukera==3){ 
-				
+				this.sartuJabea();
 			}
 			else if(aukera==4){
-				
+				this.sartuHiria();
 			}
 			else if (aukera==5){
-				
+				this.sartupisua();
 			}
 			else if (aukera==6){ 
 				this.ezabatuBezeroa();
@@ -167,7 +154,27 @@ public class BuscadoraLaExploradora {
 		}
 		*/
 	}
-	
+	private void sartuBezeroa() throws SQLException, ParseException {
+		Teklatua teklado= Teklatua.getNireTeklatua();
+		Statement st=konexioa.createStatement();
+		System.out.println("Sartu NAN-a");
+		int nan=teklado.irakurriZenb();
+		System.out.println("Sartu izena");
+		String izenaB=teklado.irakurriHitz();
+		System.out.println("Sartu lehenengo abizena");
+		String abizenaB1=teklado.irakurriHitz();
+		System.out.println("Sartu bigarren abizena");
+		String abizenaB2=teklado.irakurriHitz();
+		System.out.println("Sartu jaiotze data dd/mm/aaaa");
+		String jaiotzeData= teklado.irakurriData();
+		System.out.println("Sartu telefonoa");
+		int telefonoa=teklado.irakurriZenb();
+		System.out.println("sartu email-a");
+		String email=teklado.irakurriHitz();
+		String agindua= ("INSERT INTO BEZEROA VALUES('"+nan+"', '"+izenaB+"', '"+abizenaB1+"', '"+abizenaB2+"', '"+jaiotzeData+"', '"+telefonoa+"', '"+email+"');");
+		System.out.println(agindua);
+		st.execute(agindua);
+	}
 	private void ezabatuBezeroa() throws SQLException {
 		Statement st=konexioa.createStatement();
 		String agindua;
@@ -209,7 +216,27 @@ public class BuscadoraLaExploradora {
 			Teklatua.getNireTeklatua().irakurriEnter();
 		}
 	}
-	
+	private void sartuJabea() throws SQLException, ParseException {
+		Teklatua teklado= Teklatua.getNireTeklatua();
+		Statement st=konexioa.createStatement();
+		System.out.println("Sartu NAN-a");
+		int nan=teklado.irakurriZenb();
+		System.out.println("Sartu izena");
+		String izenaB=teklado.irakurriHitz();
+		System.out.println("Sartu lehenengo abizena");
+		String abizenaB1=teklado.irakurriHitz();
+		System.out.println("Sartu bigarren abizena");
+		String abizenaB2=teklado.irakurriHitz();
+		System.out.println("Sartu jaiotze data dd/mm/aaaa");
+		String jaiotzeData= teklado.irakurriData();
+		System.out.println("Sartu telefonoa");
+		int telefonoa=teklado.irakurriZenb();
+		System.out.println("sartu email-a");
+		String email=teklado.irakurriHitz();
+		String agindua= ("INSERT INTO BEZEROA VALUES('"+nan+"', '"+izenaB+"', '"+abizenaB1+"', '"+abizenaB2+"', '"+jaiotzeData+"', '"+telefonoa+"', '"+email+"');");
+		System.out.println(agindua);
+		st.execute(agindua);
+	}
 	private void ezabatuJabea() throws SQLException {
 		Statement st=konexioa.createStatement();
 		String agindua;
@@ -251,7 +278,27 @@ public class BuscadoraLaExploradora {
 			Teklatua.getNireTeklatua().irakurriEnter();
 		}
 	}
-	
+	private void sartuHiria() throws SQLException, ParseException {
+		Teklatua teklado= Teklatua.getNireTeklatua();
+		Statement st=konexioa.createStatement();
+		System.out.println("Sartu NAN-a");
+		int nan=teklado.irakurriZenb();
+		System.out.println("Sartu izena");
+		String izenaB=teklado.irakurriHitz();
+		System.out.println("Sartu lehenengo abizena");
+		String abizenaB1=teklado.irakurriHitz();
+		System.out.println("Sartu bigarren abizena");
+		String abizenaB2=teklado.irakurriHitz();
+		System.out.println("Sartu jaiotze data dd/mm/aaaa");
+		String jaiotzeData= teklado.irakurriData();
+		System.out.println("Sartu telefonoa");
+		int telefonoa=teklado.irakurriZenb();
+		System.out.println("sartu email-a");
+		String email=teklado.irakurriHitz();
+		String agindua= ("INSERT INTO BEZEROA VALUES('"+nan+"', '"+izenaB+"', '"+abizenaB1+"', '"+abizenaB2+"', '"+jaiotzeData+"', '"+telefonoa+"', '"+email+"');");
+		System.out.println(agindua);
+		st.execute(agindua);
+	}
 	private void ezabatuHiria() throws SQLException {
 		Statement st=konexioa.createStatement();
 		String agindua;
@@ -296,7 +343,27 @@ public class BuscadoraLaExploradora {
 			Teklatua.getNireTeklatua().irakurriEnter();
 		}
 	}
-	
+	private void sartupisua() throws SQLException, ParseException {
+		Teklatua teklado= Teklatua.getNireTeklatua();
+		Statement st=konexioa.createStatement();
+		System.out.println("Sartu NAN-a");
+		int nan=teklado.irakurriZenb();
+		System.out.println("Sartu izena");
+		String izenaB=teklado.irakurriHitz();
+		System.out.println("Sartu lehenengo abizena");
+		String abizenaB1=teklado.irakurriHitz();
+		System.out.println("Sartu bigarren abizena");
+		String abizenaB2=teklado.irakurriHitz();
+		System.out.println("Sartu jaiotze data dd/mm/aaaa");
+		String jaiotzeData= teklado.irakurriData();
+		System.out.println("Sartu telefonoa");
+		int telefonoa=teklado.irakurriZenb();
+		System.out.println("sartu email-a");
+		String email=teklado.irakurriHitz();
+		String agindua= ("INSERT INTO BEZEROA VALUES('"+nan+"', '"+izenaB+"', '"+abizenaB1+"', '"+abizenaB2+"', '"+jaiotzeData+"', '"+telefonoa+"', '"+email+"');");
+		System.out.println(agindua);
+		st.execute(agindua);
+	}
 	private void ezabatuPisua() throws SQLException {
 		Statement st=konexioa.createStatement();
 		String agindua;
