@@ -67,7 +67,7 @@ public class BuscadoraLaExploradora {
 			e.printStackTrace();
 		}
 	}
-
+	
 	private void buscadoraMenua() throws NumberFormatException, IOException, SQLException, ParseException {
 		Boolean irten=false;
 		while (!irten){
@@ -148,7 +148,7 @@ public class BuscadoraLaExploradora {
 		this.konexioa.close(); //hemen egon behar da agindu hau (konexioa bakarrik itxi programatik irten nahi denean)
 	}
 	private void ordenatuBezeroak() throws SQLException{ 
-		//ordenatu egingo ditu bezeroak eta haien erreserbak nan-a erakutsiz eta zenbateko kostua daukaten
+		//ordenatu egingo ditu bezeroak eta haien erreserbak nan-a erakutsiz eta zenbateko kostua daukaten.
 		
 		Statement st=konexioa.createStatement();
 		String agindua="select nan,abi1,abi2,kostua,pisuId,sarreraD,hirizena from bezeroa,erreserba,pisua order by nan desc ,abi1,abi2,kostua desc,pisuId,sarreraD desc,hirizena";
@@ -357,16 +357,6 @@ public class BuscadoraLaExploradora {
 	private void sartupisua() throws SQLException, ParseException {
 		Teklatua teklado= Teklatua.getNireTeklatua();
 		Statement st=konexioa.createStatement();
-<<<<<<< HEAD
-		System.out.println("Sartu ID-a");
-		int nan=teklado.irakurriZenb();
-		System.out.println("Sartu izena");
-		String izenaB=teklado.irakurriHitz();
-		System.out.println("Sartu lehenengo abizena");
-		String abizenaB1=teklado.irakurriHitz();
-		System.out.println("Sartu bigarren abizena");
-		String abizenaB2=teklado.irakurriHitz();
-=======
 		Random aux= new Random (System.nanoTime());
 		int id= aux.nextInt(100000000);
 		System.out.println("Sartu mota: pisua, hotela, apartamentua... ");
@@ -375,7 +365,6 @@ public class BuscadoraLaExploradora {
 		int prezioGau=teklado.irakurriZenb();
 		System.out.println("Sartu komun kopurua:");
 		int komunKop=teklado.irakurriZenb();
->>>>>>> branch 'master' of https://github.com/jorgementx/BuscadoraExploradora.git
 		System.out.println("Sartu jaiotze data dd/mm/aaaa");
 		String jaiotzeData= teklado.irakurriData();
 		System.out.println("Sartu telefonoa");
