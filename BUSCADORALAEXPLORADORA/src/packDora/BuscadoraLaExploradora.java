@@ -179,7 +179,9 @@ public class BuscadoraLaExploradora {
 		Teklatua teklado= Teklatua.getNireTeklatua();
 		Statement st=konexioa.createStatement();
 		String agindua;
-		System.out.println("Sartu NAN-a");
+		int prezioGau;
+		boolean erantzuna=true;
+		System.out.println("Sartu zure NAN-a");
 		int nan=teklado.irakurriZenb();
 		agindua="select * from bezeroa where nan="+nan+";";
 		ResultSet rs=st.executeQuery(agindua);
@@ -190,22 +192,41 @@ public class BuscadoraLaExploradora {
 			agindua="select * from bezeroa where nan="+nan+";";
 			rs=st.executeQuery(agindua);
 		}
-		System.out.println("Sartu izena");
-		String izenaB=teklado.irakurriHitz();
-		System.out.println("Sartu lehenengo abizena");
-		String abizenaB1=teklado.irakurriHitz();
-		System.out.println("Sartu bigarren abizena");
-		String abizenaB2=teklado.irakurriHitz();
-		System.out.println("Sartu jaiotze data dd/mm/aaaa");
-		String jaiotzeData= teklado.irakurriData();
-		System.out.println("Sartu telefonoa");
-		int telefonoa=teklado.irakurriZenb();
-		System.out.println("sartu email-a");
-		String email=teklado.irakurriHitz();
-		agindua= ("INSERT INTO BEZEROA VALUES('"+nan+"', '"+izenaB+"', '"+abizenaB1+"', '"+abizenaB2+"', '"+jaiotzeData+"', '"+telefonoa+"', '"+email+"');");
+		System.out.println("Sartu erreserbatu nahi duzun pisuaren ID-a");
+		int pisuId=teklado.irakurriZenb();
+		agindua="select * from pisua where id="+pisuId+";";
+		rs=st.executeQuery(agindua);
+		while (!rs.first()) {
+			System.out.println();
+			System.out.println("Ez da aurkitu pisurik zehaztutako ID-arekin.");
+			System.out.println("Berriro saiatu nahi duzu? (B/E)");
+			erantzuna=Teklatua.getNireTeklatua().irakurriBaiEz();
+			if (erantzuna==true) {
+				System.out.println("Sartu erreserbatu nahi duzun pisuaren ID-a");
+				pisuId=teklado.irakurriZenb();
+				agindua="select * from pisua where id="+pisuId+";";
+				rs=st.executeQuery(agindua);
+			}
+			else {
+				System.out.println();
+				System.out.println("Ados.");
+				System.out.println("Enter sakatu jarraitzeko.");
+				Teklatua.getNireTeklatua().irakurriEnter();
+			}
+		}
+		prezioGau=rs.getInt(3);
+		System.out.println(prezioGau);
+		if (erantzuna==true) {
+		System.out.println("Sartu sarrera data dd/mm/aaaa");
+		String sarreraData= teklado.irakurriData();
+		System.out.println("Sartu nahi dituzun gau kopurua");
+		int gauKop=teklado.irakurriZenb();
+		int prezioa=gauKop*prezioGau;
+		agindua= ("INSERT INTO BEZEROA VALUES('"+nan+"', '"+pisuId+"', '"+sarreraData+"', '"+gauKop+"', '"+prezioa+"');");
 		System.out.println(agindua);
 		st.execute(agindua);
 		System.out.println("Bezeroa ondo erregistratu da!");
+		}
 	}
 	
 	private void sartuBezeroa() throws SQLException, ParseException {
