@@ -13,7 +13,7 @@ import java.sql.Statement;
 import java.text.ParseException;
 import java.util.Date;
 import java.util.Scanner;
-
+import java.util.Random;
 import javax.xml.crypto.Data;
 
 public class BuscadoraLaExploradora {
@@ -357,21 +357,21 @@ public class BuscadoraLaExploradora {
 	private void sartupisua() throws SQLException, ParseException {
 		Teklatua teklado= Teklatua.getNireTeklatua();
 		Statement st=konexioa.createStatement();
-		System.out.println("Sartu NAN-a");
-		int nan=teklado.irakurriZenb();
-		System.out.println("Sartu izena");
-		String izenaB=teklado.irakurriHitz();
-		System.out.println("Sartu lehenengo abizena");
-		String abizenaB1=teklado.irakurriHitz();
-		System.out.println("Sartu bigarren abizena");
-		String abizenaB2=teklado.irakurriHitz();
+		Random aux= new Random (System.nanoTime());
+		int id= aux.nextInt(100000000);
+		System.out.println("Sartu mota: pisua, hotela, apartamentua... ");
+		String mota=teklado.irakurriHitz();
+		System.out.println("Sartu prezioa gaueko(prezio osoak):");
+		int prezioGau=teklado.irakurriZenb();
+		System.out.println("Sartu komun kopurua:");
+		int komunKop=teklado.irakurriZenb();
 		System.out.println("Sartu jaiotze data dd/mm/aaaa");
 		String jaiotzeData= teklado.irakurriData();
 		System.out.println("Sartu telefonoa");
 		int telefonoa=teklado.irakurriZenb();
 		System.out.println("sartu email-a");
 		String email=teklado.irakurriHitz();
-		String agindua= ("INSERT INTO BEZEROA VALUES('"+nan+"', '"+izenaB+"', '"+abizenaB1+"', '"+abizenaB2+"', '"+jaiotzeData+"', '"+telefonoa+"', '"+email+"');");
+		String agindua= ("INSERT INTO BEZEROA VALUES('"+id+"', '"+izenaB+"', '"+abizenaB1+"', '"+abizenaB2+"', '"+jaiotzeData+"', '"+telefonoa+"', '"+email+"');");
 		System.out.println(agindua);
 		st.execute(agindua);
 	}
