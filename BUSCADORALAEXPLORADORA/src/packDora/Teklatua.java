@@ -4,7 +4,9 @@ import java.util.Scanner;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 public class Teklatua{
 	//atributua
 	private Scanner sc;
@@ -24,8 +26,17 @@ public class Teklatua{
 	}
 	
 	public int irakurriZenb() throws NumberFormatException {
-		String sar=this.sc.nextLine();
-		int zenb= Integer.parseInt(sar);
+		int zenb = 0;
+		boolean denaOndo=false;
+		do{
+			try{
+				String sar=this.sc.nextLine();
+				zenb= Integer.parseInt(sar);
+				denaOndo=true;
+			}catch(NumberFormatException e){
+				System.out.println("Sartutako nan-a zenbakizkoa izan behar da.");
+			}
+		}while(!denaOndo);
 		return zenb;
 	}
 	
@@ -36,10 +47,47 @@ public class Teklatua{
 	public void irakurriEnter() {
 		this.sc.nextLine();
 	}
-	public Date irakurriData() throws ParseException{
-		String entrada=this.sc.nextLine();
-		DateFormat format = new SimpleDateFormat("DD/MM/YYYY");
-		Date data = format.parse(entrada);
+	public String irakurriData() throws ParseException{
+		String data="";
+		int eguna=0;
+		int hilabetea=0;
+		int urtea=0;
+		boolean egokia=false;
+		while (!egokia) {
+			egokia=true;
+			System.out.print("Eguna: ");
+			eguna=this.irakurriZenb();
+			System.out.print("Hilabetea: ");
+			hilabetea=this.irakurriZenb();
+			System.out.print("Urtea: ");
+			urtea=this.irakurriZenb();
+			data=urtea+"-"+hilabetea+"-"+eguna;
+			try {
+	            SimpleDateFormat dataFormatua = new SimpleDateFormat("yyyy-MM-dd");
+	            dataFormatua.setLenient(false);
+	            dataFormatua.parse(data);
+	            Date gaur=new Date();
+				int gaurkoEguna=gaur.getDate();
+				int gaurkoHilabetea=gaur.getMonth()+1;
+				int gaurkoUrtea=gaur.getYear()+1900;
+	            String gaurkoData=gaurkoUrtea+"-"+gaurkoHilabetea+"-"+gaurkoEguna;
+	            if (gaurkoData.compareTo(data)<0) {
+	            	throw new Exception();
+	            }
+	        }
+			catch (ParseException e) {
+	        	System.out.println();
+	        	System.out.println("Sartutako data ez da egokia. Berriro saiatu:");
+	        	System.out.println();
+				egokia=false;
+	        }
+			catch (Exception e) {
+	        	System.out.println();
+	        	System.out.println("Sartutako data etorkizunekoa da. Berriro saiatu:");
+	        	System.out.println();
+				egokia=false;
+			}
+		}
 		return data;
 	}
 	
