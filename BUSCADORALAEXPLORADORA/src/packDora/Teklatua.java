@@ -34,7 +34,7 @@ public class Teklatua{
 				zenb= Integer.parseInt(sar);
 				denaOndo=true;
 			}catch(NumberFormatException e){
-				System.out.println("Sartutako nan-a zenbakizkoa izan behar da.");
+				System.out.println("Sartutakoa ez da zenbaki bat");
 			}
 		}while(!denaOndo);
 		return zenb;
