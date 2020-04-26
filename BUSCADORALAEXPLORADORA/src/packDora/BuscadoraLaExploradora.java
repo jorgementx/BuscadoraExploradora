@@ -243,18 +243,14 @@ public class BuscadoraLaExploradora {
 		System.out.println("Sartu NAN-a");
 		int nan=teklado.irakurriZenb();
 		System.out.println("Sartu izena");
-		String izenaB=teklado.irakurriHitz();
-		System.out.println("Sartu lehenengo abizena");
-		String abizenaB1=teklado.irakurriHitz();
-		System.out.println("Sartu bigarren abizena");
-		String abizenaB2=teklado.irakurriHitz();
-		System.out.println("Sartu jaiotze data dd/mm/aaaa");
-		String jaiotzeData= teklado.irakurriData();
+		String izenaJ=teklado.irakurriHitz();
 		System.out.println("Sartu telefonoa");
 		int telefonoa=teklado.irakurriZenb();
 		System.out.println("sartu email-a");
 		String email=teklado.irakurriHitz();
-		String agindua= ("INSERT INTO BEZEROA VALUES('"+nan+"', '"+izenaB+"', '"+abizenaB1+"', '"+abizenaB2+"', '"+jaiotzeData+"', '"+telefonoa+"', '"+email+"');");
+		System.out.println("Sartu banku kontua");
+		int bKont=teklado.irakurriZenb();
+		String agindua= ("INSERT INTO BEZEROA VALUES('"+nan+"', '"+izenaJ+"', '"+telefonoa+"', '"+email+"', '"+bKont+"');");
 		System.out.println(agindua);
 		st.execute(agindua);
 	}
@@ -302,21 +298,15 @@ public class BuscadoraLaExploradora {
 	private void sartuHiria() throws SQLException, ParseException {
 		Teklatua teklado= Teklatua.getNireTeklatua();
 		Statement st=konexioa.createStatement();
-		System.out.println("Sartu NAN-a");
-		int nan=teklado.irakurriZenb();
 		System.out.println("Sartu izena");
-		String izenaB=teklado.irakurriHitz();
-		System.out.println("Sartu lehenengo abizena");
-		String abizenaB1=teklado.irakurriHitz();
-		System.out.println("Sartu bigarren abizena");
-		String abizenaB2=teklado.irakurriHitz();
-		System.out.println("Sartu jaiotze data dd/mm/aaaa");
-		String jaiotzeData= teklado.irakurriData();
-		System.out.println("Sartu telefonoa");
-		int telefonoa=teklado.irakurriZenb();
-		System.out.println("sartu email-a");
-		String email=teklado.irakurriHitz();
-		String agindua= ("INSERT INTO BEZEROA VALUES('"+nan+"', '"+izenaB+"', '"+abizenaB1+"', '"+abizenaB2+"', '"+jaiotzeData+"', '"+telefonoa+"', '"+email+"');");
+		String izena=teklado.irakurriHitz();
+		System.out.println("Sartu herrialdea");
+		String herrialde=teklado.irakurriHitz();
+		System.out.println("Sartu kontinentea");
+		String kontinente=teklado.irakurriHitz();
+		System.out.println("Sartu posta kodea");
+		int pKode=teklado.irakurriZenb();
+		String agindua= ("INSERT INTO BEZEROA VALUES('"+izena+"', '"+herrialde+"', '"+kontinente+"', '"+pKode+"');");
 		System.out.println(agindua);
 		st.execute(agindua);
 	}
