@@ -178,8 +178,18 @@ public class BuscadoraLaExploradora {
 	private void sartuBezeroa() throws SQLException, ParseException {
 		Teklatua teklado= Teklatua.getNireTeklatua();
 		Statement st=konexioa.createStatement();
+		String agindua;
 		System.out.println("Sartu NAN-a");
 		int nan=teklado.irakurriZenb();
+		agindua="select * from bezeroa where nan="+nan+";";
+		ResultSet rs=st.executeQuery(agindua);
+		while (rs.first()) {
+			System.out.println("Sartutako NAN-a jadanik badago sisteman");
+			System.out.println("Sartu NAN-a");
+			nan=teklado.irakurriZenb();
+			agindua="select * from bezeroa where nan="+nan+";";
+			rs=st.executeQuery(agindua);
+		}
 		System.out.println("Sartu izena");
 		String izenaB=teklado.irakurriHitz();
 		System.out.println("Sartu lehenengo abizena");
@@ -192,9 +202,10 @@ public class BuscadoraLaExploradora {
 		int telefonoa=teklado.irakurriZenb();
 		System.out.println("sartu email-a");
 		String email=teklado.irakurriHitz();
-		String agindua= ("INSERT INTO BEZEROA VALUES('"+nan+"', '"+izenaB+"', '"+abizenaB1+"', '"+abizenaB2+"', '"+jaiotzeData+"', '"+telefonoa+"', '"+email+"');");
+		agindua= ("INSERT INTO BEZEROA VALUES('"+nan+"', '"+izenaB+"', '"+abizenaB1+"', '"+abizenaB2+"', '"+jaiotzeData+"', '"+telefonoa+"', '"+email+"');");
 		System.out.println(agindua);
 		st.execute(agindua);
+		System.out.println("Bezeroa ondo erregistratu da!");
 	}
 	private void ezabatuBezeroa() throws SQLException {
 		Statement st=konexioa.createStatement();
@@ -240,8 +251,18 @@ public class BuscadoraLaExploradora {
 	private void sartuJabea() throws SQLException, ParseException {
 		Teklatua teklado= Teklatua.getNireTeklatua();
 		Statement st=konexioa.createStatement();
+		String agindua;
 		System.out.println("Sartu NAN-a");
 		int nan=teklado.irakurriZenb();
+		agindua="select * from bezeroa where nan="+nan+";";
+		ResultSet rs=st.executeQuery(agindua);
+		while (rs.first()) {
+			System.out.println("Sartutako NAN-a jadanik badago sisteman");
+			System.out.println("Sartu NAN-a");
+			nan=teklado.irakurriZenb();
+			agindua="select * from bezeroa where nan="+nan+";";
+			rs=st.executeQuery(agindua);
+		}
 		System.out.println("Sartu izena");
 		String izenaJ=teklado.irakurriHitz();
 		System.out.println("Sartu telefonoa");
@@ -250,9 +271,10 @@ public class BuscadoraLaExploradora {
 		String email=teklado.irakurriHitz();
 		System.out.println("Sartu banku kontua");
 		int bKont=teklado.irakurriZenb();
-		String agindua= ("INSERT INTO JABEA VALUES('"+nan+"', '"+izenaJ+"', '"+telefonoa+"', '"+email+"', '"+bKont+"');");
+		agindua= ("INSERT INTO JABEA VALUES('"+nan+"', '"+izenaJ+"', '"+telefonoa+"', '"+email+"', '"+bKont+"');");
 		System.out.println(agindua);
 		st.execute(agindua);
+		System.out.println("Jabea ondo erregistratu da!");
 	}
 	private void ezabatuJabea() throws SQLException {
 		Statement st=konexioa.createStatement();
