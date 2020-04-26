@@ -148,10 +148,10 @@ public class BuscadoraLaExploradora {
 		this.konexioa.close(); //hemen egon behar da agindu hau (konexioa bakarrik itxi programatik irten nahi denean)
 	}
 	private void ordenatuBezeroak() throws SQLException{ 
-		//ordenatu egingo ditu bezeroak eta haien erreserbak nan-a erakutsiz eta zenbateko kostua daukaten.
+		//ordenatu egingo ditu bezeroak eta haien erreserbak nan-a erakutsiz eta zenbateko kostua daukaten
 		
 		Statement st=konexioa.createStatement();
-		String agindua="select nan,abi1,abi2,kostua,pisuId,sarreraD,hirizena from bezeroa,erreserba,pisua order by nan desc ,abi1,abi2,kostua desc,pisuId,sarreraD desc,hirizena";
+		String agindua="select nan,abi1,abi2,kostua,pisuId,sarreraD from bezeroa,erreserba where bezeroNan=nan order by nan desc ,abi1,abi2,kostua desc,pisuId,sarreraD desc";
 		ResultSet rs=st.executeQuery(agindua);
 		while(rs.next()){
 			int NAN=rs.getInt("nan");
@@ -160,8 +160,8 @@ public class BuscadoraLaExploradora {
 			int Kostua=rs.getInt("kostua");
 			int Pisua=rs.getInt("pisuId");
 			Date data=rs.getDate("sarreraD");
-			String Hirizena=rs.getString("hirizena");
-			System.out.println(" "+NAN+" "+Abizena1+" "+Abizena2+" "+Kostua+""+""+Pisua+""+data+""+Hirizena);
+			
+			System.out.println("Nan: "+NAN+" Abizena1: "+Abizena1+" Abizena2: "+Abizena2+" Kostua: "+Kostua+" Pisua: "+Pisua+" Data: "+data+" ");
 		}
 		System.out.println();
 		System.out.println("Enter sakatu jarraitzeko.");
