@@ -1,6 +1,8 @@
 package packDora;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.sql.Connection;
@@ -11,6 +13,8 @@ import java.sql.Statement;
 import java.text.ParseException;
 import java.util.Date;
 import java.util.Scanner;
+
+import javax.xml.crypto.Data;
 
 public class BuscadoraLaExploradora {
 	
@@ -29,6 +33,19 @@ public class BuscadoraLaExploradora {
 	
 	public static void main(String[] args) throws NumberFormatException, IOException, SQLException, ParseException {
 		BuscadoraLaExploradora nireBLE = new BuscadoraLaExploradora();
+		Scanner input = null;
+		//Hasierako pantaila inprimatzeko:
+		File f = new File("BuscadoraLaExploradora.txt");
+		try {
+			input = new Scanner(f);
+		} catch (FileNotFoundException e) {
+			System.out.println("Ez da aurkitu fitxategia");
+		}
+
+		while (input.hasNextLine())
+		{ 
+		   System.out.println(input.nextLine());
+		}
 		nireBLE.buscadoraHasieratu();
 		
 	}
@@ -131,16 +148,20 @@ public class BuscadoraLaExploradora {
 		this.konexioa.close(); //hemen egon behar da agindu hau (konexioa bakarrik itxi programatik irten nahi denean)
 	}
 	private void ordenatuBezeroak() throws SQLException{ 
+		//ordenatu egingo ditu bezeroak eta haien erreserbak nan-a erakutsiz eta zenbateko kostua daukaten.
 		
 		Statement st=konexioa.createStatement();
-		String agindua="select nan,abi1,abi2,kostua,hirizena from bezeroa,erreserba,hiria order by nan desc ,abi1,abi2,kostua desc";
+		String agindua="select nan,abi1,abi2,kostua,pisuId,sarreraD,hirizena from bezeroa,erreserba,pisua order by nan desc ,abi1,abi2,kostua desc,pisuId,sarreraD desc,hirizena";
 		ResultSet rs=st.executeQuery(agindua);
 		while(rs.next()){
 			int NAN=rs.getInt("nan");
 			String Abizena1=rs.getString("abi1");
 			String Abizena2=rs.getString("abi2");
 			int Kostua=rs.getInt("kostua");
-			System.out.println(" "+NAN+" "+Abizena1+" "+Abizena2+" "+Kostua);
+			int Pisua=rs.getInt("pisuId");
+			Date data=rs.getDate("sarreraD");
+			String Hirizena=rs.getString("hirizena");
+			System.out.println(" "+NAN+" "+Abizena1+" "+Abizena2+" "+Kostua+""+""+Pisua+""+data+""+Hirizena);
 		}
 		System.out.println();
 		System.out.println("Enter sakatu jarraitzeko.");

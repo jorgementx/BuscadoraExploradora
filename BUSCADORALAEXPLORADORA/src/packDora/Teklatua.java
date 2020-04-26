@@ -26,8 +26,17 @@ public class Teklatua{
 	}
 	
 	public int irakurriZenb() throws NumberFormatException {
-		String sar=this.sc.nextLine();
-		int zenb= Integer.parseInt(sar);
+		int zenb = 0;
+		boolean denaOndo=false;
+		do{
+			try{
+				String sar=this.sc.nextLine();
+				zenb= Integer.parseInt(sar);
+				denaOndo=true;
+			}catch(NumberFormatException e){
+				System.out.println("Sartutako nan-a zenbakizkoa izan behar da.");
+			}
+		}while(!denaOndo);
 		return zenb;
 	}
 	
