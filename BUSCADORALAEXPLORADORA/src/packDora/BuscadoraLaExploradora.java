@@ -67,25 +67,7 @@ public class BuscadoraLaExploradora {
 			e.printStackTrace();
 		}
 	}
-	
-<<<<<<< HEAD
-	private void buscadoraMenua() throws NumberFormatException, IOException, SQLException {
-		int aukera;
-		Teklatua teklado= Teklatua.getNireTeklatua();
-		System.out.println("Aukeratu egin nahi duzuna, 1-etik 7-ra");
-		System.out.println("1.- Egin erreserba");
-		System.out.println("2.- Erregistratu bezeroa");
-		System.out.println("3.- Erregistratu jabea");
-		System.out.println("4.- Erregistratu hiria");
-		System.out.println("5.- Lortu bezeroaren erreserbak");
-		System.out.println("6.- Lortu jabearen pisuak");
-		System.out.println("7.- Lortu hiriko pisuak");
-		Boolean aukeraEgokia=false;
-		while (!aukeraEgokia){
-			aukera=teklado.irakurriZenb();
-			if (aukera>=1 && aukera<=7){
-				aukeraEgokia=true;
-=======
+
 	private void buscadoraMenua() throws NumberFormatException, IOException, SQLException, ParseException {
 		Boolean irten=false;
 		while (!irten){
@@ -116,7 +98,6 @@ public class BuscadoraLaExploradora {
 				else{
 					System.out.println("Aukeratu 1-etik 15-rako zenbaki bat");
 				}
->>>>>>> branch 'master' of https://github.com/jorgementx/BuscadoraExploradora.git
 			}
 			if (aukera==1){
 			
@@ -325,7 +306,7 @@ public class BuscadoraLaExploradora {
 		String kontinente=teklado.irakurriHitz();
 		System.out.println("Sartu posta kodea");
 		int pKode=teklado.irakurriZenb();
-		String agindua= ("INSERT INTO BEZEROA VALUES('"+izena+"', '"+herrialde+"', '"+kontinente+"', '"+pKode+"');");
+		String agindua= ("INSERT INTO HIRIA VALUES('"+izena+"', '"+herrialde+"', '"+kontinente+"', '"+pKode+"');");
 		System.out.println(agindua);
 		st.execute(agindua);
 	}
@@ -376,7 +357,7 @@ public class BuscadoraLaExploradora {
 	private void sartupisua() throws SQLException, ParseException {
 		Teklatua teklado= Teklatua.getNireTeklatua();
 		Statement st=konexioa.createStatement();
-		System.out.println("Sartu NAN-a");
+		System.out.println("Sartu ID-a");
 		int nan=teklado.irakurriZenb();
 		System.out.println("Sartu izena");
 		String izenaB=teklado.irakurriHitz();
