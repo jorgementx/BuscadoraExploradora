@@ -358,7 +358,7 @@ public class BuscadoraLaExploradora {
 		Teklatua teklado= Teklatua.getNireTeklatua();
 		Statement st=konexioa.createStatement();
 		Random aux= new Random (System.nanoTime());
-		int id= aux.nextInt(100000000);
+		int id= aux.nextInt(1000000000);
 		System.out.println("Sartu mota: pisua, hotela, apartamentua... ");
 		String mota=teklado.irakurriHitz();
 		System.out.println("Sartu prezioa gaueko(prezio osoak):");
