@@ -250,7 +250,7 @@ public class BuscadoraLaExploradora {
 		String email=teklado.irakurriHitz();
 		System.out.println("Sartu banku kontua");
 		int bKont=teklado.irakurriZenb();
-		String agindua= ("INSERT INTO BEZEROA VALUES('"+nan+"', '"+izenaJ+"', '"+telefonoa+"', '"+email+"', '"+bKont+"');");
+		String agindua= ("INSERT INTO JABEA VALUES('"+nan+"', '"+izenaJ+"', '"+telefonoa+"', '"+email+"', '"+bKont+"');");
 		System.out.println(agindua);
 		st.execute(agindua);
 	}
@@ -306,7 +306,7 @@ public class BuscadoraLaExploradora {
 		String kontinente=teklado.irakurriHitz();
 		System.out.println("Sartu posta kodea");
 		int pKode=teklado.irakurriZenb();
-		String agindua= ("INSERT INTO BEZEROA VALUES('"+izena+"', '"+herrialde+"', '"+kontinente+"', '"+pKode+"');");
+		String agindua= ("INSERT INTO HIRIA VALUES('"+izena+"', '"+herrialde+"', '"+kontinente+"', '"+pKode+"');");
 		System.out.println(agindua);
 		st.execute(agindua);
 	}
@@ -371,7 +371,7 @@ public class BuscadoraLaExploradora {
 		int telefonoa=teklado.irakurriZenb();
 		System.out.println("sartu email-a");
 		String email=teklado.irakurriHitz();
-		String agindua= ("INSERT INTO BEZEROA VALUES('"+id+"', '"+izenaB+"', '"+abizenaB1+"', '"+abizenaB2+"', '"+jaiotzeData+"', '"+telefonoa+"', '"+email+"');");
+		String agindua= ("INSERT INTO PISUA VALUES('"+id+"', '"+izenaB+"', '"+abizenaB1+"', '"+abizenaB2+"', '"+jaiotzeData+"', '"+telefonoa+"', '"+email+"');");
 		System.out.println(agindua);
 		st.execute(agindua);
 	}
