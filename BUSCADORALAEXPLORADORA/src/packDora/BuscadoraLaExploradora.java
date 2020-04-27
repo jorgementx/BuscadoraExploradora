@@ -253,8 +253,17 @@ public class BuscadoraLaExploradora {
 				System.out.println("Aukeratutako bezeroa modu egokian ezabatu egin da.");
 			}
 			System.out.println();
-			System.out.println("Enter sakatu jarraitzeko.");
-			Teklatua.getNireTeklatua().irakurriEnter();
+			System.out.println("Bezero gehiago ezabatu nahi al duzu? (B/E)");
+			boolean erantzuna=Teklatua.getNireTeklatua().irakurriBaiEz();
+			if (erantzuna==true) {
+				this.ezabatuBezeroa();
+			}
+			else {
+				System.out.println();
+				System.out.println("Ados.");
+				System.out.println("Enter sakatu jarraitzeko.");
+				Teklatua.getNireTeklatua().irakurriEnter();
+			}
 		}
 	}
 	private void sartuJabea() throws SQLException, ParseException {
@@ -311,8 +320,17 @@ public class BuscadoraLaExploradora {
 				System.out.println("Aukeratutako jabea modu egokian ezabatu egin da.");
 			}
 			System.out.println();
-			System.out.println("Enter sakatu jarraitzeko.");
-			Teklatua.getNireTeklatua().irakurriEnter();
+			System.out.println("Jabe gehiago ezabatu nahi al duzu? (B/E)");
+			boolean erantzuna=Teklatua.getNireTeklatua().irakurriBaiEz();
+			if (erantzuna==true) {
+				this.ezabatuJabea();
+			}
+			else {
+				System.out.println();
+				System.out.println("Ados.");
+				System.out.println("Enter sakatu jarraitzeko.");
+				Teklatua.getNireTeklatua().irakurriEnter();
+			}
 		}
 	}
 	private void sartuHiria() throws SQLException, ParseException {
@@ -370,8 +388,17 @@ public class BuscadoraLaExploradora {
 				System.out.println("Aukeratutako hiria modu egokian ezabatu egin da.");
 			}
 			System.out.println();
-			System.out.println("Enter sakatu jarraitzeko.");
-			Teklatua.getNireTeklatua().irakurriEnter();
+			System.out.println("Hiri gehiago ezabatu nahi al duzu? (B/E)");
+			boolean erantzuna=Teklatua.getNireTeklatua().irakurriBaiEz();
+			if (erantzuna==true) {
+				this.ezabatuHiria();
+			}
+			else {
+				System.out.println();
+				System.out.println("Ados.");
+				System.out.println("Enter sakatu jarraitzeko.");
+				Teklatua.getNireTeklatua().irakurriEnter();
+			}
 		}
 	}
 	private void sartupisua() throws SQLException, ParseException {
@@ -432,8 +459,17 @@ public class BuscadoraLaExploradora {
 				System.out.println("Aukeratutako pisua modu egokian ezabatu egin da.");
 			}
 			System.out.println();
-			System.out.println("Enter sakatu jarraitzeko.");
-			Teklatua.getNireTeklatua().irakurriEnter();
+			System.out.println("Pisu gehiago ezabatu nahi al duzu? (B/E)");
+			boolean erantzuna=Teklatua.getNireTeklatua().irakurriBaiEz();
+			if (erantzuna==true) {
+				this.ezabatuPisua();
+			}
+			else {
+				System.out.println();
+				System.out.println("Ados.");
+				System.out.println("Enter sakatu jarraitzeko.");
+				Teklatua.getNireTeklatua().irakurriEnter();
+			}
 		}
 	}
 	
@@ -472,8 +508,18 @@ public class BuscadoraLaExploradora {
 			st.execute(agindua);
 			System.out.println();
 			System.out.println("Aukeratutako erreserba modu egokian ezabatu egin da.");
-			System.out.println("Enter sakatu jarraitzeko.");
-			Teklatua.getNireTeklatua().irakurriEnter();
+			System.out.println();
+			System.out.println("Erreserba gehiago ezabatu nahi al duzu? (B/E)");
+			boolean erantzuna=Teklatua.getNireTeklatua().irakurriBaiEz();
+			if (erantzuna==true) {
+				this.ezabatuErreserba();
+			}
+			else {
+				System.out.println();
+				System.out.println("Ados.");
+				System.out.println("Enter sakatu jarraitzeko.");
+				Teklatua.getNireTeklatua().irakurriEnter();
+			}
 		}
 	}
 
