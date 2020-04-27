@@ -543,6 +543,7 @@ public class BuscadoraLaExploradora {
 			System.out.println("Zenbat gau gehitu nahi dituzu?");
 			int pGauKop=Teklatua.getNireTeklatua().irakurriZenb();
 			System.out.println();
+			
 		}
 		else{
 			System.out.println("Zenbat gau kendu nahi dituzu?");
