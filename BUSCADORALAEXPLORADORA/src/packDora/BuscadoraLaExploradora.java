@@ -67,7 +67,7 @@ public class BuscadoraLaExploradora {
 			e.printStackTrace();
 		}
 	}
-
+	
 	private void buscadoraMenua() throws NumberFormatException, IOException, SQLException, ParseException {
 		Boolean irten=false;
 		while (!irten){
@@ -88,7 +88,12 @@ public class BuscadoraLaExploradora {
 			System.out.println("12.- Lortu jabearen pisuak");
 			System.out.println("13.- Lortu hiriko pisuak");
 			System.out.println("14.- Lortu mota konkretu bateko pisuak hiri konkretu batean");
-			System.out.println("15.- Irten");
+			System.out.println("15.- Erreserba aldatu");
+			System.out.println("16.- Bezeroa aldatu");
+			System.out.println("17.- Hiria aldatu");
+			System.out.println("18.- Jabea aldatu");
+			System.out.println("19.- Pisua aldatu");
+			System.out.println("20.- Irten");
 			Boolean aukeraEgokia=false;
 			while (!aukeraEgokia){
 				aukera=teklado.irakurriZenb();
@@ -142,6 +147,21 @@ public class BuscadoraLaExploradora {
 				this.motaHiriBatekoPisuaLortu();
 			}
 			else if(aukera==15){
+				
+			}
+			else if(aukera==16){
+				
+			}
+			else if(aukera==17){
+				
+			}
+			else if(aukera==18){
+				
+			}
+			else if(aukera==19){
+				
+			}
+			else if(aukera==20){
 				irten=true;
 			}
 		}
@@ -151,7 +171,7 @@ public class BuscadoraLaExploradora {
 		//ordenatu egingo ditu bezeroak eta haien erreserbak nan-a erakutsiz eta zenbateko kostua daukaten
 		
 		Statement st=konexioa.createStatement();
-		String agindua="select nan,abi1,abi2,kostua,pisuId,sarreraD,hirizena from bezeroa,erreserba,pisua order by nan desc ,abi1,abi2,kostua desc,pisuId,sarreraD desc,hirizena";
+		String agindua="select nan,abi1,abi2,kostua,pisuId,sarreraD from bezeroa,erreserba where bezeroNan=nan order by nan desc ,abi1,abi2,kostua desc,pisuId,sarreraD desc";
 		ResultSet rs=st.executeQuery(agindua);
 		while(rs.next()){
 			int NAN=rs.getInt("nan");
@@ -160,8 +180,8 @@ public class BuscadoraLaExploradora {
 			int Kostua=rs.getInt("kostua");
 			int Pisua=rs.getInt("pisuId");
 			Date data=rs.getDate("sarreraD");
-			String Hirizena=rs.getString("hirizena");
-			System.out.println(" "+NAN+" "+Abizena1+" "+Abizena2+" "+Kostua+""+""+Pisua+""+data+""+Hirizena);
+			
+			System.out.println("Nan: "+NAN+" Abizena1: "+Abizena1+" Abizena2: "+Abizena2+" Kostua: "+Kostua+" Pisua: "+Pisua+" Data: "+data+" ");
 		}
 		System.out.println();
 		System.out.println("Enter sakatu jarraitzeko.");
@@ -357,16 +377,6 @@ public class BuscadoraLaExploradora {
 	private void sartupisua() throws SQLException, ParseException {
 		Teklatua teklado= Teklatua.getNireTeklatua();
 		Statement st=konexioa.createStatement();
-<<<<<<< HEAD
-		System.out.println("Sartu ID-a");
-		int nan=teklado.irakurriZenb();
-		System.out.println("Sartu izena");
-		String izenaB=teklado.irakurriHitz();
-		System.out.println("Sartu lehenengo abizena");
-		String abizenaB1=teklado.irakurriHitz();
-		System.out.println("Sartu bigarren abizena");
-		String abizenaB2=teklado.irakurriHitz();
-=======
 		Random aux= new Random (System.nanoTime());
 		int id= aux.nextInt(100000000);
 		System.out.println("Sartu mota: pisua, hotela, apartamentua... ");
@@ -375,7 +385,6 @@ public class BuscadoraLaExploradora {
 		int prezioGau=teklado.irakurriZenb();
 		System.out.println("Sartu komun kopurua:");
 		int komunKop=teklado.irakurriZenb();
->>>>>>> branch 'master' of https://github.com/jorgementx/BuscadoraExploradora.git
 		System.out.println("Sartu jaiotze data dd/mm/aaaa");
 		String jaiotzeData= teklado.irakurriData();
 		System.out.println("Sartu telefonoa");
@@ -524,4 +533,5 @@ public class BuscadoraLaExploradora {
 			Teklatua.getNireTeklatua().irakurriEnter();
 		}
 	}
+	private void erreserba
 }
