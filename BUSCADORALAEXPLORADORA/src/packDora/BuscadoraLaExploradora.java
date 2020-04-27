@@ -88,7 +88,12 @@ public class BuscadoraLaExploradora {
 			System.out.println("12.- Lortu jabearen pisuak");
 			System.out.println("13.- Lortu hiriko pisuak");
 			System.out.println("14.- Lortu mota konkretu bateko pisuak hiri konkretu batean");
-			System.out.println("15.- Irten");
+			System.out.println("15.- Erreserba aldatu");
+			System.out.println("16.- Bezeroa aldatu");
+			System.out.println("17.- Hiria aldatu");
+			System.out.println("18.- Jabea aldatu");
+			System.out.println("19.- Pisua aldatu");
+			System.out.println("20.- Irten");
 			Boolean aukeraEgokia=false;
 			while (!aukeraEgokia){
 				aukera=teklado.irakurriZenb();
@@ -142,6 +147,21 @@ public class BuscadoraLaExploradora {
 				this.motaHiriBatekoPisuaLortu();
 			}
 			else if(aukera==15){
+				
+			}
+			else if(aukera==16){
+				
+			}
+			else if(aukera==17){
+				
+			}
+			else if(aukera==18){
+				
+			}
+			else if(aukera==19){
+				
+			}
+			else if(aukera==20){
 				irten=true;
 			}
 		}
@@ -513,4 +533,5 @@ public class BuscadoraLaExploradora {
 			Teklatua.getNireTeklatua().irakurriEnter();
 		}
 	}
+	private void erreserba
 }
