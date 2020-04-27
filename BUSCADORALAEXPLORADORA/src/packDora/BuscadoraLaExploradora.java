@@ -533,5 +533,33 @@ public class BuscadoraLaExploradora {
 			Teklatua.getNireTeklatua().irakurriEnter();
 		}
 	}
-	private void erreserba
+	private void gauakAldatu(){
+		Teklatua teklado= Teklatua.getNireTeklatua();
+		Statement st=konexioa.createStatement();
+		System.out.println("Gau gehiago nahi al dituzu? (B/E)");
+		boolean erantzuna=Teklatua.getNireTeklatua().irakurriBaiEz();
+		System.out.println();
+		if(erantzuna){
+			System.out.println("Zenbat gau gehitu nahi dituzu?");
+			int pGauKop=Teklatua.getNireTeklatua().irakurriZenb();
+			System.out.println();
+		}
+		else{
+			System.out.println("Zenbat gau kendu nahi dituzu?");
+			int pGauKop=Teklatua.getNireTeklatua().irakurriZenb();
+			System.out.println();
+		}
+	}
+	private void mugikorraAldatu(){
+		
+	}
+	private void jabeAldatu(){
+		
+	}
+	private void pisuzAldatu(){
+		
+	}
+	private void kostuAldatu(){
+		
+	}
 }
