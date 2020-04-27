@@ -100,7 +100,7 @@ public class BuscadoraLaExploradora {
 					aukeraEgokia=true;
 				}
 				else{
-					System.out.println("Aukeratu 1-etik 20-rako zenbaki bat");
+					System.out.println("Aukeratu 1-etik 19-rako zenbaki bat");
 				}
 			}
 			if (aukera==1){
