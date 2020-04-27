@@ -90,14 +90,13 @@ public class BuscadoraLaExploradora {
 			System.out.println("14.- Lortu mota konkretu bateko pisuak hiri konkretu batean");
 			System.out.println("15.- Gau kopurua aldatu");
 			System.out.println("16.- Bezeroaren mugikorra aldatu");
-			System.out.println("17.- Jabea aldatu");
-			System.out.println("18.- Pisuz aldatu");
-			System.out.println("19.- Pisuaren kostua aldatu");
-			System.out.println("20.- Irten");
+			System.out.println("17.- Pisu baten jabea aldatu");
+			System.out.println("18.- Pisuaren kostua aldatu");
+			System.out.println("19.- Irten");
 			Boolean aukeraEgokia=false;
 			while (!aukeraEgokia){
 				aukera=teklado.irakurriZenb();
-				if (aukera>=1 && aukera<=20){
+				if (aukera>=1 && aukera<=19){
 					aukeraEgokia=true;
 				}
 				else{
@@ -153,15 +152,12 @@ public class BuscadoraLaExploradora {
 				this.mugikorraAldatu();
 			}
 			else if(aukera==17){
-				
+				this.jabeAldatu();
 			}
 			else if(aukera==18){
-				
+				this.kostuAldatu();
 			}
 			else if(aukera==19){
-				
-			}
-			else if(aukera==20){
 				irten=true;
 			}
 		}
@@ -585,7 +581,7 @@ public class BuscadoraLaExploradora {
 			System.out.println("Berriro saiatu nahi duzu? (B/E)");
 			boolean erantzuna=Teklatua.getNireTeklatua().irakurriBaiEz();
 			if (erantzuna==true) {
-				this.mugikorraAldatu();;
+				this.mugikorraAldatu();
 			}
 			else {
 				System.out.println();
@@ -603,13 +599,80 @@ public class BuscadoraLaExploradora {
 		st.execute(agindua);
 		}
 	}
-	private void jabeAldatu(){
+	private void jabeAldatu() throws NumberFormatException,SQLException {
+		Statement st=konexioa.createStatement();
+		String agindua;
+		System.out.println("Sartu pisuaren id-a");
+		int pID=Teklatua.getNireTeklatua().irakurriZenb();
+		agindua="select * from pisua having id='"+pID+"';";
+		ResultSet rs=st.executeQuery(agindua);
+		if(!rs.first()){
+			System.out.println();
+			System.out.println("Ez da aurkitu pisurik");
+			System.out.println("Berriro saiatu nahi duzu? (B/E)");
+			boolean erantzuna=Teklatua.getNireTeklatua().irakurriBaiEz();
+			if (erantzuna==true) {
+				this.kostuAldatu();
+			}
+			else {
+				System.out.println();
+				System.out.println("Ados.");
+				System.out.println("Enter sakatu jarraitzeko.");
+				Teklatua.getNireTeklatua().irakurriEnter();
+			}
+		}
+		else{
+			System.out.println();
+			System.out.println("Sartu jabearen NAN-a");
+			int pNAN=Teklatua.getNireTeklatua().irakurriZenb();
+			System.out.println();
+			System.out.println("Sartu jabearen izena");
+			String pIzen=Teklatua.getNireTeklatua().irakurriHitz();
+			System.out.println();
+			System.out.println("Sartu jabearen telefono zenbakia");
+			int ptelf=Teklatua.getNireTeklatua().irakurriZenb();
+			System.out.println();
+			System.out.println("Sartu jabearen email-a");
+			String pEmail=Teklatua.getNireTeklatua().irakurriHitz();
+			System.out.println();
+			System.out.println("Sartu jabearen banku kontu zenbakia");
+			int pbank=Teklatua.getNireTeklatua().irakurriZenb();
+			System.out.println();
+			agindua="update * from pisua jabeNan='"+pNAN+"';";
+			st.execute(agindua);
+		}
 		
 	}
-	private void pisuzAldatu(){
-		
-	}
-	private void kostuAldatu(){
-		
+
+	private void kostuAldatu() throws NumberFormatException,SQLException {
+		Statement st=konexioa.createStatement();
+		String agindua;
+		System.out.println("Sartu pisuaren id-a");
+		int pID=Teklatua.getNireTeklatua().irakurriZenb();
+		agindua="select * from pisua having id='"+pID+"';";
+		ResultSet rs=st.executeQuery(agindua);
+		if(!rs.first()){
+			System.out.println();
+			System.out.println("Ez da aurkitu pisurik");
+			System.out.println("Berriro saiatu nahi duzu? (B/E)");
+			boolean erantzuna=Teklatua.getNireTeklatua().irakurriBaiEz();
+			if (erantzuna==true) {
+				this.kostuAldatu();
+			}
+			else {
+				System.out.println();
+				System.out.println("Ados.");
+				System.out.println("Enter sakatu jarraitzeko.");
+				Teklatua.getNireTeklatua().irakurriEnter();
+			}
+		}
+		else{
+		System.out.println();
+		System.out.println("Sartu pisuaren prezioa berria gauero");
+		int pPrezio=Teklatua.getNireTeklatua().irakurriZenb();
+		System.out.println();
+		agindua="update * from pisua prezioGau='"+pPrezio+"';";
+		st.execute(agindua);
+		}
 	}
 }
