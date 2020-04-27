@@ -88,11 +88,11 @@ public class BuscadoraLaExploradora {
 			System.out.println("12.- Lortu jabearen pisuak");
 			System.out.println("13.- Lortu hiriko pisuak");
 			System.out.println("14.- Lortu mota konkretu bateko pisuak hiri konkretu batean");
-			System.out.println("15.- Erreserba aldatu");
-			System.out.println("16.- Bezeroa aldatu");
-			System.out.println("17.- Hiria aldatu");
-			System.out.println("18.- Jabea aldatu");
-			System.out.println("19.- Pisua aldatu");
+			System.out.println("15.- Gau kopurua aldatu");
+			System.out.println("16.- Bezeroaren mugikorra aldatu");
+			System.out.println("17.- Jabea aldatu");
+			System.out.println("18.- Pisuz aldatu");
+			System.out.println("19.- Pisuaren kostua aldatu");
 			System.out.println("20.- Irten");
 			Boolean aukeraEgokia=false;
 			while (!aukeraEgokia){
