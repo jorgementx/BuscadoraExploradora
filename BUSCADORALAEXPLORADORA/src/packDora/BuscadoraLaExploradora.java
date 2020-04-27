@@ -150,7 +150,7 @@ public class BuscadoraLaExploradora {
 				this.gauakAldatu();
 			}
 			else if(aukera==16){
-				
+				this.mugikorraAldatu();
 			}
 			else if(aukera==17){
 				
@@ -578,12 +578,30 @@ public class BuscadoraLaExploradora {
 		System.out.println("Sartu zure NAN zenbakia");
 		int pNAN=Teklatua.getNireTeklatua().irakurriZenb();
 		agindua="select * from bezeroa having bezeroNAN='"+pNAN+"';";
+		ResultSet rs=st.executeQuery(agindua);
+		if(!rs.first()){
+			System.out.println();
+			System.out.println("Ez da aurkitu bezerorik");
+			System.out.println("Berriro saiatu nahi duzu? (B/E)");
+			boolean erantzuna=Teklatua.getNireTeklatua().irakurriBaiEz();
+			if (erantzuna==true) {
+				this.mugikorraAldatu();;
+			}
+			else {
+				System.out.println();
+				System.out.println("Ados.");
+				System.out.println("Enter sakatu jarraitzeko.");
+				Teklatua.getNireTeklatua().irakurriEnter();
+			}
+		}
+		else{
 		System.out.println();
 		System.out.println("Sartu zure telefono zenbakia berria");
 		int ptelf=Teklatua.getNireTeklatua().irakurriZenb();
 		System.out.println();
 		agindua="update * from bezeroa telef='"+ptelf+"';";
 		st.execute(agindua);
+		}
 	}
 	private void jabeAldatu(){
 		
