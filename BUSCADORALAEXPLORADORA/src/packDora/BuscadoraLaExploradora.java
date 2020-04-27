@@ -97,11 +97,11 @@ public class BuscadoraLaExploradora {
 			Boolean aukeraEgokia=false;
 			while (!aukeraEgokia){
 				aukera=teklado.irakurriZenb();
-				if (aukera>=1 && aukera<=15){
+				if (aukera>=1 && aukera<=20){
 					aukeraEgokia=true;
 				}
 				else{
-					System.out.println("Aukeratu 1-etik 15-rako zenbaki bat");
+					System.out.println("Aukeratu 1-etik 20-rako zenbaki bat");
 				}
 			}
 			if (aukera==1){
