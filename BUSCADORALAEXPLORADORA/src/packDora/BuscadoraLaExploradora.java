@@ -536,6 +536,18 @@ public class BuscadoraLaExploradora {
 	private void gauakAldatu(){
 		Teklatua teklado= Teklatua.getNireTeklatua();
 		Statement st=konexioa.createStatement();
+		System.out.println("Sartu zure NAN zenbakia");
+		int pNAN=Teklatua.getNireTeklatua().irakurriZenb();
+		System.out.println();
+		System.out.println("Sartu pisuaren id-a");
+		int pIdPisu=Teklatua.getNireTeklatua().irakurriZenb();
+		System.out.println();
+		System.out.println("Sartu erreserbaren sarrera data");
+		String pSarreraD=Teklatua.getNireTeklatua().irakurriData();
+		System.out.println();
+		String agindua;
+		agindua="select * from erreserba having bezeroNAN='"+pNAN+"' and pisuID='"+pIdPisu+"' and sarreraD='"+pSarreraD+"';";
+		ResultSet rs=st.executeQuery(agindua);
 		System.out.println("Gau gehiago nahi al dituzu? (B/E)");
 		boolean erantzuna=Teklatua.getNireTeklatua().irakurriBaiEz();
 		System.out.println();
@@ -543,13 +555,16 @@ public class BuscadoraLaExploradora {
 			System.out.println("Zenbat gau gehitu nahi dituzu?");
 			int pGauKop=Teklatua.getNireTeklatua().irakurriZenb();
 			System.out.println();
-			
+			agindua="update * from erreserba gauKop='"+gauKop+pGauKop+"';";
 		}
 		else{
 			System.out.println("Zenbat gau kendu nahi dituzu?");
 			int pGauKop=Teklatua.getNireTeklatua().irakurriZenb();
 			System.out.println();
+			agindua="update * from erreserba gauKop='"+gauKop-pGauKop+"';";
 		}
+		System.out.println("Enter sakatu jarraitzeko.");
+		Teklatua.getNireTeklatua().irakurriEnter();
 	}
 	private void mugikorraAldatu(){
 		
