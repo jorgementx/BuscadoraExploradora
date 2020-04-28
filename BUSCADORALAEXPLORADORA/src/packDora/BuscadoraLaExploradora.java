@@ -84,7 +84,7 @@ public class BuscadoraLaExploradora {
 			System.out.println("8.- Ezabatu hiria");
 			System.out.println("9.- Ezabatu pisua");
 			System.out.println("10.- Ezabatu erreserba");
-			System.out.println("11.- Lortu bezeroaren erreserbak");
+			System.out.println("11.- Lortu bezeroaren erreserbak edo/eta pisuen prezioa");
 			System.out.println("12.- Lortu jabearen pisuak");
 			System.out.println("13.- Lortu hiriko pisuak");
 			System.out.println("14.- Lortu mota konkretu bateko pisuak hiri konkretu batean");
@@ -97,11 +97,11 @@ public class BuscadoraLaExploradora {
 			Boolean aukeraEgokia=false;
 			while (!aukeraEgokia){
 				aukera=teklado.irakurriZenb();
-				if (aukera>=1 && aukera<=15){
+				if (aukera>=1 && aukera<=20){
 					aukeraEgokia=true;
 				}
 				else{
-					System.out.println("Aukeratu 1-etik 15-rako zenbaki bat");
+					System.out.println("Aukeratu 1-etik 20-rako zenbaki bat");
 				}
 			}
 			if (aukera==1){
@@ -171,29 +171,63 @@ public class BuscadoraLaExploradora {
 		//ordenatu egingo ditu bezeroak eta haien erreserbak nan-a erakutsiz eta zenbateko kostua daukaten
 		
 		Statement st=konexioa.createStatement();
-		String agindua="select nan,abi1,abi2,kostua,pisuId,sarreraD from bezeroa,erreserba where bezeroNan=nan order by nan desc ,abi1,abi2,kostua desc,pisuId,sarreraD desc";
+		System.out.println("Begiratu nahi dituzu bezeroen erreserbak? Bai edo ez");
+		boolean erantzuna=Teklatua.getNireTeklatua().irakurriBaiEz();
+		if(erantzuna){
+			String agindua="select nan,abi1,abi2,kostua,pisuId,sarreraD from bezeroa,erreserba where bezeroNan=nan order by nan desc ,abi1,abi2,kostua desc,pisuId,sarreraD desc";
+			ResultSet rs=st.executeQuery(agindua);
+			while(rs.next()){
+				int NAN=rs.getInt("nan");
+				String Abizena1=rs.getString("abi1");
+				String Abizena2=rs.getString("abi2");
+				int Kostua=rs.getInt("kostua");
+				int Pisua=rs.getInt("pisuId");
+				Date data=rs.getDate("sarreraD");
+				
+				System.out.println("Nan: "+NAN+" Abizena1: "+Abizena1+" Abizena2: "+Abizena2+" Kostua: "+Kostua+" Pisua: "+Pisua+" Data: "+data+" ");
+			}
+			System.out.println();
+			System.out.println("Enter sakatu jarraitzeko.");
+			Teklatua.getNireTeklatua().irakurriEnter();
+			System.out.println("Orain begiratu nahi dituzu pisuen prezioa gau batez?");
+			boolean emaitza=Teklatua.getNireTeklatua().irakurriBaiEz();
+			if(emaitza){
+				this.ordenatuPisuaPrezioa();
+				System.out.println("Enter sakatu jarraitzeko.");
+				Teklatua.getNireTeklatua().irakurriEnter();
+			}
+			else{
+				System.out.println("Enter sakatu jarraitzeko.");
+				Teklatua.getNireTeklatua().irakurriEnter();
+			}
+			
+		}
+		else{
+			this.ordenatuPisuaPrezioa();
+		
+			/*String agindua="select prezioGau,id from pisua order by prezioGau desc ,id";
+			ResultSet rs=st.executeQuery(agindua);
+			while(rs.next()){
+				int PrezioGau=rs.getInt("prezioGau");
+				int Id=rs.getInt("id");
+				System.out.println("Prezio Gau: "+PrezioGau+" Id-a: "+Id);
+				*/
+			
+			System.out.println();
+			System.out.println("Enter sakatu jarraitzeko.");
+			Teklatua.getNireTeklatua().irakurriEnter();
+		}
+	}
+	
+	private void ordenatuPisuaPrezioa() throws SQLException{
+		Statement st=konexioa.createStatement();
+		String agindua="select prezioGau,id from pisua order by prezioGau desc ,id";
 		ResultSet rs=st.executeQuery(agindua);
 		while(rs.next()){
-			int NAN=rs.getInt("nan");
-			String Abizena1=rs.getString("abi1");
-			String Abizena2=rs.getString("abi2");
-			int Kostua=rs.getInt("kostua");
-			int Pisua=rs.getInt("pisuId");
-			Date data=rs.getDate("sarreraD");
-			
-			System.out.println("Nan: "+NAN+" Abizena1: "+Abizena1+" Abizena2: "+Abizena2+" Kostua: "+Kostua+" Pisua: "+Pisua+" Data: "+data+" ");
+			int PrezioGau=rs.getInt("prezioGau");
+			int Id=rs.getInt("id");
+			System.out.println("Prezio Gau: "+PrezioGau+" Id-a: "+Id);
 		}
-		System.out.println();
-		System.out.println("Enter sakatu jarraitzeko.");
-		Teklatua.getNireTeklatua().irakurriEnter();
-		/*String agindua="select nan,abi1 from bezeroa order by nan,abi1 ";
-		ResultSet rs=st.executeQuery(agindua);
-		while(rs.next()){
-			int n=rs.getInt("nan");
-			System.out.println(n+""+"ab1="+rs.getObject("abi1"));
-			
-		}
-		*/
 	}
 	private void sartuBezeroa() throws SQLException, ParseException {
 		Teklatua teklado= Teklatua.getNireTeklatua();
