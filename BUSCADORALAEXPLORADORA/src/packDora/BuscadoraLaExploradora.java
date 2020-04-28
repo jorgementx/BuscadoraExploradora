@@ -533,5 +533,5 @@ public class BuscadoraLaExploradora {
 			Teklatua.getNireTeklatua().irakurriEnter();
 		}
 	}
-	private void erreserba
+
 }
