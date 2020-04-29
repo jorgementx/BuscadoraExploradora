@@ -746,12 +746,12 @@ public class BuscadoraLaExploradora {
 			int pGauKop=Teklatua.getNireTeklatua().irakurriZenb();
 			System.out.println();
 			agindua="update * from erreserba gauKop='"+pGauKop+"';";
-			st.executate(agindua);
+			st.execute(agindua);
 			System.out.println("Enter sakatu jarraitzko. ");
 			Teklatua.getNireTeklatua().irakurriEnter();
 		}
 	}
-	private void mugikorraAldatu(){
+	private void mugikorraAldatu() throws SQLException, NumberFormatException, ParseException{
 		Statement st=konexioa.createStatement();
 		Teklatua teklado= Teklatua.getNireTeklatua();
 		String agindua;
@@ -780,7 +780,7 @@ public class BuscadoraLaExploradora {
 			int ptelf=Teklatua.getNireTeklatua().irakurriZenb();
 			System.out.println();
 			agindua="update * from bezeroa telef='"+ptelf+"';";
-			st.executate(agindua);
+			st.execute(agindua);
 			System.out.println("Enter sakatu jarraitzko. ");
 			Teklatua.getNireTeklatua().irakurriEnter();
 		}
