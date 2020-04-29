@@ -185,7 +185,7 @@ public class BuscadoraLaExploradora {
 		int nan=teklado.irakurriZenb();
 		agindua="select * from bezeroa where nan="+nan+";";
 		ResultSet rs=st.executeQuery(agindua);
-		while (!rs.first()) {
+		while(!rs.first()) {
 			System.out.println("Sartutako NAN-a ez dago bezeroen zerrendan");
 			System.out.println("Sartu NAN-a:");
 			nan=teklado.irakurriZenb();
