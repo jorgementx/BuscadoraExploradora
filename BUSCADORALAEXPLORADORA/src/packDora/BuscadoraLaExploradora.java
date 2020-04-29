@@ -90,7 +90,7 @@ public class BuscadoraLaExploradora {
 			System.out.println("13.- Lortu jabearen pisuak");
 			System.out.println("14.- Lortu hiriko pisuak");
 			System.out.println("15.- Lortu mota konkretu bateko pisuak hiri konkretu batean");
-			System.out.println("16.- Lortu pisuak (eta kopurua) aukeratutako prezio tartetan");
+			System.out.println("16.- Lortu pisuak aukeratutako prezio tartetan");
 			System.out.println("17.- Gau kopurua aldatu");
 			System.out.println("18.- Bezeroaren mugikorra aldatu");
 			System.out.println("19.- Pisu baten jabea aldatu");
@@ -176,8 +176,46 @@ public class BuscadoraLaExploradora {
 		}
 		this.konexioa.close(); //hemen egon behar da agindu hau (konexioa bakarrik itxi programatik irten nahi denean)
 	}
-	private void prezioakTarteka() {
-		//select count(*), round(prezioa/pTartea.0) lag from mytable group by lag;
+	private void prezioakTarteka() throws SQLException {
+		//select count(*) from pisua group by round(prezioGau/3.0);
+		Statement st=konexioa.createStatement();
+		String agindua;
+		System.out.println();
+		System.out.println("Zenbateko prezio tarteak nahi dituzu?");
+		int pTarte=Teklatua.getNireTeklatua().irakurriZenb();
+		System.out.println();
+		agindua="select round(prezioGau/"+pTarte+")*"+pTarte+",count(*),avg(preziogau) 'Batazbesteko prezioa', avg(m2) 'batazbesteko azalera',avg(pertskopmax) 'batazbesteko pertsonak' from pisua group by round(prezioGau/"+pTarte+");";
+		ResultSet rs=st.executeQuery(agindua);
+		if (!rs.first()) {
+			System.out.println();
+			System.out.println("Ez dago pisurik sisteman");
+		}
+		else {
+			agindua="select round(prezioGau/"+pTarte+")*"+pTarte+",count(*),avg(preziogau) 'Batazbesteko prezioa', avg(m2) 'batazbesteko azalera',avg(pertskopmax) 'batazbesteko pertsonak' from pisua group by round(prezioGau/"+pTarte+");";
+			rs=st.executeQuery(agindua);
+			while (rs.next()) {
+				int goiMuga;
+				int beheMuga;
+				int taldea=rs.getInt(1);
+				int kop=rs.getInt(2);
+				float avgPrez=rs.getFloat(3);
+				float avgM2=rs.getFloat(4);
+				float avgPerts=rs.getFloat(5);
+				if (pTarte%2==0){
+					goiMuga=taldea+pTarte/2-1;
+					beheMuga=taldea-pTarte/2;
+				}
+				else{
+					goiMuga=taldea+pTarte/2;
+					beheMuga=taldea-pTarte/2;
+				}
+				
+				System.out.format("tartea: %s-%s, kopurua: %s, batazbesteko prezioa: %s, batazbesteko azalera: %s, batazbesteko pertsonak: %s\n", beheMuga,goiMuga,kop,avgPrez,avgM2,avgPerts);
+			}
+			System.out.println();
+			System.out.println("Enter sakatu jarraitzeko.");
+			Teklatua.getNireTeklatua().irakurriEnter();
+		}
 		
 	}
 
