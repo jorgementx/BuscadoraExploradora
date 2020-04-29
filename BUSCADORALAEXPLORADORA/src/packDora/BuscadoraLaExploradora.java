@@ -93,7 +93,7 @@ public class BuscadoraLaExploradora {
 			System.out.println("16.- Lortu pisuak (eta kopurua) aukeratutako prezio tartetan");
 			System.out.println("17.- Gau kopurua aldatu");
 			System.out.println("18.- Bezeroaren mugikorra aldatu");
-			System.out.println("19.- Jabea aldatu");
+			System.out.println("19.- Pisu baten jabea aldatu");
 			System.out.println("20.- Pisuz aldatu");
 			System.out.println("21.- Pisuaren kostua aldatu");
 			System.out.println("22.- Irten");
@@ -156,19 +156,19 @@ public class BuscadoraLaExploradora {
 				this.prezioakTarteka();
 			}
 			else if(aukera==17){
-				
+				this.gauakAldatu();	
 			}
 			else if(aukera==18){
-				
+				this.mugikorraAldatu();
 			}
 			else if(aukera==19){
-				
+				this.jabeAldatu();
 			}
 			else if(aukera==20){
 				
 			}
 			else if(aukera==21){
-				
+				this.kostuAldatu();
 			}
 			else if(aukera==22){
 				irten=true;
@@ -673,34 +673,162 @@ public class BuscadoraLaExploradora {
 		}
 	}
 
-	private void gauakAldatu() throws SQLException{
-		Teklatua teklado= Teklatua.getNireTeklatua();
+	private void gauakAldatu() throws NumberFormatException,ParseException,SQLException{
 		Statement st=konexioa.createStatement();
-		System.out.println("Gau gehiago nahi al dituzu? (B/E)");
-		boolean erantzuna=Teklatua.getNireTeklatua().irakurriBaiEz();
+		Teklatua teklado= Teklatua.getNireTeklatua();
+		System.out.println("Sartu zure NAN zenbakia");
+		int pNAN=Teklatua.getNireTeklatua().irakurriZenb();
 		System.out.println();
-		if(erantzuna){
-			System.out.println("Zenbat gau gehitu nahi dituzu?");
-			int pGauKop=Teklatua.getNireTeklatua().irakurriZenb();
+		System.out.println("Sartu pisuaren id-a");
+		int pIdPisu=Teklatua.getNireTeklatua().irakurriZenb();
+		System.out.println();
+		System.out.println("Sartu erreserbaren sarrera data");
+		String pSarreraD=Teklatua.getNireTeklatua().irakurriData();
+		System.out.println();
+		String agindua;
+		agindua="select * from erreserba having bezeroNAN='"+pNAN+"' and pisuID='"+pIdPisu+"' and sarreraD='"+pSarreraD+"';";
+		ResultSet rs=st.executeQuery(agindua);
+		if(!rs.first()){
 			System.out.println();
+			System.out.println("Ez da aurkitu erreserbarik hautatutako datuekin");
+			System.out.println("Berriro saiatu nahi duzu? (B/E)");
+			boolean erantzuna=Teklatua.getNireTeklatua().irakurriBaiEz();
+			if(erantzuna==true){
+				this.gauakAldatu();
+			}
+			else{
+				System.out.println();
+				System.out.println("Ados. ");
+				System.out.println("Enter sakatu jarraitzko. ");
+				Teklatua.getNireTeklatua().irakurriEnter();	
+			}
 		}
 		else{
-			System.out.println("Zenbat gau kendu nahi dituzu?");
+			System.out.println("Sartu nahi dituzun gau kopurua");
 			int pGauKop=Teklatua.getNireTeklatua().irakurriZenb();
 			System.out.println();
+			agindua="update * from erreserba gauKop='"+pGauKop+"';";
+			st.executate(agindua);
+			System.out.println("Enter sakatu jarraitzko. ");
+			Teklatua.getNireTeklatua().irakurriEnter();
 		}
 	}
 	private void mugikorraAldatu(){
-		
+		Statement st=konexioa.createStatement();
+		Teklatua teklado= Teklatua.getNireTeklatua();
+		String agindua;
+		System.out.println("Sartu zure NAN zenbakia");	
+		int pNAN=Teklatua.getNireTeklatua().irakurriZenb();
+		agindua="select * from erreserba having bezeroNAN='"+pNAN+"';";
+		ResultSet rs=st.executeQuery(agindua);
+		if(!rs.first()){
+			System.out.println();
+			System.out.println("Ez da aurkitu bezerorik");
+			System.out.println("Berriro saiatu nahi duzu? (B/E)");
+			boolean erantzuna=Teklatua.getNireTeklatua().irakurriBaiEz();
+			if(erantzuna==true){
+				this.gauakAldatu();
+			}
+			else{
+				System.out.println();
+				System.out.println("Ados. ");
+				System.out.println("Enter sakatu jarraitzko. ");
+				Teklatua.getNireTeklatua().irakurriEnter();	
+			}
+		}
+		else{
+			System.out.println();
+			System.out.println("Sartu zure telefono zenbaki berria");
+			int ptelf=Teklatua.getNireTeklatua().irakurriZenb();
+			System.out.println();
+			agindua="update * from bezeroa telef='"+ptelf+"';";
+			st.executate(agindua);
+			System.out.println("Enter sakatu jarraitzko. ");
+			Teklatua.getNireTeklatua().irakurriEnter();
+		}
 	}
-	private void jabeAldatu(){
-		
+	private void jabeAldatu() throws NumberFormatException,SQLException {
+		Statement st=konexioa.createStatement();
+		Teklatua teklado= Teklatua.getNireTeklatua();
+		String agindua;
+		System.out.println("Sartu pisuaren id-a");
+		int pID=Teklatua.getNireTeklatua().irakurriZenb();
+		agindua="select * from pisua having id='"+pID+"';";
+		ResultSet rs=st.executeQuery(agindua);
+		if(!rs.first()){
+			System.out.println();
+			System.out.println("Ez da aurkitu pisurik");
+			System.out.println("Berriro saiatu nahi duzu? (B/E)");
+			boolean erantzuna=Teklatua.getNireTeklatua().irakurriBaiEz();
+			if (erantzuna==true) {
+				this.kostuAldatu();
+			}
+			else {
+				System.out.println();
+				System.out.println("Ados.");
+				System.out.println("Enter sakatu jarraitzeko.");
+				Teklatua.getNireTeklatua().irakurriEnter();
+			}
+		}
+		else{
+			System.out.println();
+			System.out.println("Sartu jabearen NAN-a");
+			int pNAN=Teklatua.getNireTeklatua().irakurriZenb();
+			System.out.println();
+			System.out.println("Sartu jabearen izena");
+			String pIzen=Teklatua.getNireTeklatua().irakurriHitz();
+			System.out.println();
+			System.out.println("Sartu jabearen telefono zenbakia");
+			int ptelf=Teklatua.getNireTeklatua().irakurriZenb();
+			System.out.println();
+			System.out.println("Sartu jabearen email-a");
+			String pEmail=Teklatua.getNireTeklatua().irakurriHitz();
+			System.out.println();
+			System.out.println("Sartu jabearen banku kontu zenbakia");
+			int pbank=Teklatua.getNireTeklatua().irakurriZenb();
+			System.out.println();
+			agindua="update * from pisua jabeNan='"+pNAN+"';";
+			st.execute(agindua);
+			System.out.println("Enter sakatu jarraitzeko.");
+			Teklatua.getNireTeklatua().irakurriEnter();
+		}
 	}
 	private void pisuzAldatu(){
 		
 	}
-	private void kostuAldatu(){
-		
+	private void kostuAldatu() throws NumberFormatException,SQLException {
+		Statement st=konexioa.createStatement();
+		Teklatua teklado= Teklatua.getNireTeklatua();
+		String agindua;
+		System.out.println("Sartu pisuaren id-a");
+		int pID=Teklatua.getNireTeklatua().irakurriZenb();
+		agindua="select * from pisua having id='"+pID+"';";
+		ResultSet rs=st.executeQuery(agindua);
+		if(!rs.first()){
+			System.out.println();
+			System.out.println("Ez da aurkitu pisurik");
+			System.out.println("Berriro saiatu nahi duzu? (B/E)");
+			boolean erantzuna=Teklatua.getNireTeklatua().irakurriBaiEz();
+			if (erantzuna==true) {
+				this.kostuAldatu();
+			}
+			else {
+				System.out.println();
+				System.out.println("Ados.");
+				System.out.println("Enter sakatu jarraitzeko.");
+				Teklatua.getNireTeklatua().irakurriEnter();
+			}
+		}
+		else{
+			System.out.println();
+			System.out.println("Sartu pisuaren prezioa berria gauero");
+			int pPrezio=Teklatua.getNireTeklatua().irakurriZenb();
+			System.out.println();
+			agindua="update * from pisua prezioGau='"+pPrezio+"';";
+			st.execute(agindua);
+			System.out.println("Enter sakatu jarraitzeko.");
+			Teklatua.getNireTeklatua().irakurriEnter();
+		}
 	}
 
 }
