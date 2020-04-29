@@ -597,6 +597,8 @@ public class BuscadoraLaExploradora {
 		System.out.println();
 		agindua="update * from bezeroa telef='"+ptelf+"';";
 		st.execute(agindua);
+		System.out.println("Enter sakatu jarraitzeko.");
+		Teklatua.getNireTeklatua().irakurriEnter();
 		}
 	}
 	private void jabeAldatu() throws NumberFormatException,SQLException {
