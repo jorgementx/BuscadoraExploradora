@@ -225,7 +225,7 @@ public class BuscadoraLaExploradora {
 		agindua= ("INSERT INTO ERRESERBA VALUES('"+nan+"', '"+pisuId+"', '"+sarreraData+"', '"+gauKop+"', '"+prezioa+"');");
 		System.out.println(agindua);
 		st.execute(agindua);
-		System.out.println("Bezeroa ondo erregistratu da!");
+		System.out.println("Erreserba ondo erregistratu da!");
 		}
 	}
 	
