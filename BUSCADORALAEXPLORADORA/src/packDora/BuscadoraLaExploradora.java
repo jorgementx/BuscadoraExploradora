@@ -181,13 +181,13 @@ public class BuscadoraLaExploradora {
 		String agindua;
 		int prezioGau;
 		boolean erantzuna=true;
-		System.out.println("Sartu zure NAN-a");
+		System.out.println("Sartu zure NAN-a, mesedez");
 		int nan=teklado.irakurriZenb();
 		agindua="select * from bezeroa where nan="+nan+";";
 		ResultSet rs=st.executeQuery(agindua);
-		while (rs.first()) {
-			System.out.println("Sartutako NAN-a jadanik badago sisteman");
-			System.out.println("Sartu NAN-a");
+		while (!rs.first()) {
+			System.out.println("Sartutako NAN-a ez dago bezeroen zerrendan");
+			System.out.println("Sartu NAN-a:");
 			nan=teklado.irakurriZenb();
 			agindua="select * from bezeroa where nan="+nan+";";
 			rs=st.executeQuery(agindua);
@@ -222,7 +222,7 @@ public class BuscadoraLaExploradora {
 		System.out.println("Sartu nahi dituzun gau kopurua");
 		int gauKop=teklado.irakurriZenb();
 		int prezioa=gauKop*prezioGau;
-		agindua= ("INSERT INTO BEZEROA VALUES('"+nan+"', '"+pisuId+"', '"+sarreraData+"', '"+gauKop+"', '"+prezioa+"');");
+		agindua= ("INSERT INTO ERRESERBA VALUES('"+nan+"', '"+pisuId+"', '"+sarreraData+"', '"+gauKop+"', '"+prezioa+"');");
 		System.out.println(agindua);
 		st.execute(agindua);
 		System.out.println("Bezeroa ondo erregistratu da!");
