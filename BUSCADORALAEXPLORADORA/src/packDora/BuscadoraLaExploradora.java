@@ -106,7 +106,7 @@ public class BuscadoraLaExploradora {
 				}
 			}
 			if (aukera==1){
-				this.eginReserba(); 
+			
 			}
 			else if (aukera==2){
 				this.sartuBezeroa();
@@ -324,75 +324,11 @@ public class BuscadoraLaExploradora {
 			}
 		}
 	}
-	private void eginReserba() throws SQLException, ParseException {
-		Teklatua teklado= Teklatua.getNireTeklatua();
-		Statement st=konexioa.createStatement();
-		String agindua;
-		int prezioGau;
-		boolean erantzuna=true;
-		System.out.println("Sartu zure NAN-a, mesedez");
-		int nan=teklado.irakurriZenb();
-		agindua="select * from bezeroa where nan="+nan+";";
-		ResultSet rs=st.executeQuery(agindua);
-		while(!rs.first()) {
-			System.out.println("Sartutako NAN-a ez dago bezeroen zerrendan");
-			System.out.println("Sartu NAN-a:");
-			nan=teklado.irakurriZenb();
-			agindua="select * from bezeroa where nan="+nan+";";
-			rs=st.executeQuery(agindua);
-		}
-		System.out.println("Sartu erreserbatu nahi duzun pisuaren ID-a");
-		int pisuId=teklado.irakurriZenb();
-		agindua="select * from pisua where id="+pisuId+";";
-		rs=st.executeQuery(agindua);
-		while (!rs.first()) {
-			System.out.println();
-			System.out.println("Ez da aurkitu pisurik zehaztutako ID-arekin.");
-			System.out.println("Berriro saiatu nahi duzu? (B/E)");
-			erantzuna=Teklatua.getNireTeklatua().irakurriBaiEz();
-			if (erantzuna==true) {
-				System.out.println("Sartu erreserbatu nahi duzun pisuaren ID-a");
-				pisuId=teklado.irakurriZenb();
-				agindua="select * from pisua where id="+pisuId+";";
-				rs=st.executeQuery(agindua);
-			}
-			else {
-				System.out.println();
-				System.out.println("Ados.");
-				System.out.println("Enter sakatu jarraitzeko.");
-				Teklatua.getNireTeklatua().irakurriEnter();
-			}
-		}
-		prezioGau=rs.getInt(3);
-		System.out.println(prezioGau);
-		if (erantzuna==true) {
-		System.out.println("Sartu sarrera data dd/mm/aaaa");
-		String sarreraData= teklado.irakurriData();
-		System.out.println("Sartu nahi dituzun gau kopurua");
-		int gauKop=teklado.irakurriZenb();
-		int prezioa=gauKop*prezioGau;
-		agindua= ("INSERT INTO ERRESERBA VALUES('"+nan+"', '"+pisuId+"', '"+sarreraData+"', '"+gauKop+"', '"+prezioa+"');");
-		System.out.println(agindua);
-		st.execute(agindua);
-		System.out.println("Erreserba ondo erregistratu da!");
-		}
-	}
-	
 	private void sartuBezeroa() throws SQLException, ParseException {
 		Teklatua teklado= Teklatua.getNireTeklatua();
 		Statement st=konexioa.createStatement();
-		String agindua;
 		System.out.println("Sartu NAN-a");
 		int nan=teklado.irakurriZenb();
-		agindua="select * from bezeroa where nan="+nan+";";
-		ResultSet rs=st.executeQuery(agindua);
-		while (rs.first()) {
-			System.out.println("Sartutako NAN-a jadanik badago sisteman");
-			System.out.println("Sartu NAN-a");
-			nan=teklado.irakurriZenb();
-			agindua="select * from bezeroa where nan="+nan+";";
-			rs=st.executeQuery(agindua);
-		}
 		System.out.println("Sartu izena");
 		String izenaB=teklado.irakurriHitz();
 		System.out.println("Sartu lehenengo abizena");
@@ -405,10 +341,9 @@ public class BuscadoraLaExploradora {
 		int telefonoa=teklado.irakurriZenb();
 		System.out.println("sartu email-a");
 		String email=teklado.irakurriHitz();
-		agindua= ("INSERT INTO BEZEROA VALUES('"+nan+"', '"+izenaB+"', '"+abizenaB1+"', '"+abizenaB2+"', '"+jaiotzeData+"', '"+telefonoa+"', '"+email+"');");
+		String agindua= ("INSERT INTO BEZEROA VALUES('"+nan+"', '"+izenaB+"', '"+abizenaB1+"', '"+abizenaB2+"', '"+jaiotzeData+"', '"+telefonoa+"', '"+email+"');");
 		System.out.println(agindua);
 		st.execute(agindua);
-		System.out.println("Bezeroa ondo erregistratu da!");
 	}
 	private void ezabatuBezeroa() throws SQLException {
 		Statement st=konexioa.createStatement();
@@ -463,18 +398,8 @@ public class BuscadoraLaExploradora {
 	private void sartuJabea() throws SQLException, ParseException {
 		Teklatua teklado= Teklatua.getNireTeklatua();
 		Statement st=konexioa.createStatement();
-		String agindua;
 		System.out.println("Sartu NAN-a");
 		int nan=teklado.irakurriZenb();
-		agindua="select * from bezeroa where nan="+nan+";";
-		ResultSet rs=st.executeQuery(agindua);
-		while (rs.first()) {
-			System.out.println("Sartutako NAN-a jadanik badago sisteman");
-			System.out.println("Sartu NAN-a");
-			nan=teklado.irakurriZenb();
-			agindua="select * from bezeroa where nan="+nan+";";
-			rs=st.executeQuery(agindua);
-		}
 		System.out.println("Sartu izena");
 		String izenaJ=teklado.irakurriHitz();
 		System.out.println("Sartu telefonoa");
@@ -483,10 +408,9 @@ public class BuscadoraLaExploradora {
 		String email=teklado.irakurriHitz();
 		System.out.println("Sartu banku kontua");
 		int bKont=teklado.irakurriZenb();
-		agindua= ("INSERT INTO JABEA VALUES('"+nan+"', '"+izenaJ+"', '"+telefonoa+"', '"+email+"', '"+bKont+"');");
+		String agindua= ("INSERT INTO JABEA VALUES('"+nan+"', '"+izenaJ+"', '"+telefonoa+"', '"+email+"', '"+bKont+"');");
 		System.out.println(agindua);
 		st.execute(agindua);
-		System.out.println("Jabea ondo erregistratu da!");
 	}
 	private void ezabatuJabea() throws SQLException {
 		Statement st=konexioa.createStatement();
@@ -541,25 +465,17 @@ public class BuscadoraLaExploradora {
 	private void sartuHiria() throws SQLException, ParseException {
 		Teklatua teklado= Teklatua.getNireTeklatua();
 		Statement st=konexioa.createStatement();
-		String agindua;
 		System.out.println("Sartu izena");
 		String izena=teklado.irakurriHitz();
 		System.out.println("Sartu herrialdea");
 		String herrialde=teklado.irakurriHitz();
-		agindua="select * from hiria where izena='"+izena+"' and herrialdea='"+herrialde+"';";
-		ResultSet rs=st.executeQuery(agindua);
-		if (rs.first()) {
-			System.out.println();
-			System.out.println("sartu nahi duzun hiria sisteman dago jadanik");
-		}
-		else{
 		System.out.println("Sartu kontinentea");
 		String kontinente=teklado.irakurriHitz();
 		System.out.println("Sartu posta kodea");
 		int pKode=teklado.irakurriZenb();
-		agindua= ("INSERT INTO HIRIA VALUES('"+izena+"', '"+herrialde+"', '"+kontinente+"', '"+pKode+"');");
+		String agindua= ("INSERT INTO HIRIA VALUES('"+izena+"', '"+herrialde+"', '"+kontinente+"', '"+pKode+"');");
 		System.out.println(agindua);
-		st.execute(agindua);}
+		st.execute(agindua);
 	}
 	private void ezabatuHiria() throws SQLException {
 		Statement st=konexioa.createStatement();
@@ -617,95 +533,14 @@ public class BuscadoraLaExploradora {
 	private void sartupisua() throws SQLException, ParseException {
 		Teklatua teklado= Teklatua.getNireTeklatua();
 		Statement st=konexioa.createStatement();
-		String agindua;
-		boolean erantzuna;
-		int jabeNan=0;
 		Random aux= new Random (System.nanoTime());
-		int id= aux.nextInt(1000000000);
-		agindua="select * from pisua where id="+id+";";
-		ResultSet rs=st.executeQuery(agindua);
-		while (rs.first()) {
-			aux= new Random (System.nanoTime());
-			id= aux.nextInt(1000000000);
-			agindua="select * from pisua where id="+id+";";
-			rs=st.executeQuery(agindua);
-		}
+		int id= aux.nextInt(100000000);
 		System.out.println("Sartu mota: pisua, hotela, apartamentua... ");
 		String mota=teklado.irakurriHitz();
 		System.out.println("Sartu prezioa gaueko(prezio osoak):");
 		int prezioGau=teklado.irakurriZenb();
 		System.out.println("Sartu komun kopurua:");
 		int komunKop=teklado.irakurriZenb();
-<<<<<<< HEAD
-		System.out.println("Sartu metro karratuak");
-		float m2= teklado.irakurriFloat();
-		System.out.println("Sartu pertsona kopuru maximoa");
-		int pkopMax=teklado.irakurriZenb();
-		System.out.println("Sartu egongela duen: Bai/Ez");
-		String egongela=teklado.irakurriHitz();
-		System.out.println("Sartu sukaldea duen: Bai/Ez");
-		String sukaldea=teklado.irakurriHitz();
-		System.out.println("Sartu kalea");
-		String kalea=teklado.irakurriHitz();
-		System.out.println("Sartu kalearen zenbakia");
-		int kaleZenb=teklado.irakurriZenb();
-		System.out.println("Sartu solairuaren zenbakia");
-		int solairuZenb=teklado.irakurriZenb();
-		System.out.println("Sartu letra");
-		String pLetra=teklado.irakurriHitz();
-		System.out.println("Sartu hiria");
-		String hiriIzena=teklado.irakurriHitz();
-		System.out.println("Sartu herrialdea");
-		String hiriHerrialde=teklado.irakurriHitz();
-		agindua="select * from hiria where izena='"+hiriIzena+"' and herrialdea='"+hiriHerrialde+"';";
-		rs=st.executeQuery(agindua);
-		erantzuna=true;
-		while (!rs.first()) {
-			System.out.println();
-			System.out.println("Ez da aurkitu hiririk zehaztutako izena eta herrialdearekin.");
-			System.out.println("Berriro saiatu nahi duzu? (B/E)");
-			erantzuna=Teklatua.getNireTeklatua().irakurriBaiEz();
-			if (erantzuna==true) {
-				System.out.println("Sartu hiria");
-				hiriIzena=teklado.irakurriHitz();
-				System.out.println("Sartu herrialdea");
-				hiriHerrialde=teklado.irakurriHitz();
-				agindua="select * from hiria where izena='"+hiriIzena+"' and herrialdea='"+hiriHerrialde+"';";
-				rs=st.executeQuery(agindua);
-			}
-			else {
-				System.out.println();
-				System.out.println("Ados.");
-				System.out.println("Enter sakatu jarraitzeko.");
-				Teklatua.getNireTeklatua().irakurriEnter();
-			}
-		}
-		if (erantzuna==true) {
-		System.out.println("Sartu jabearen NANa");
-		jabeNan=teklado.irakurriZenb();
-		agindua="select * from jabea where nan="+jabeNan+";";
-		rs=st.executeQuery(agindua);
-		while (!rs.first()) {
-			System.out.println();
-			System.out.println("Ez da aurkitu jaberik zehaztutako NAN-arekin.");
-			System.out.println("Berriro saiatu nahi duzu? (B/E)");
-			erantzuna=Teklatua.getNireTeklatua().irakurriBaiEz();
-			if (erantzuna==true) {
-				System.out.println("Sartu jabearen NANa");
-				jabeNan=teklado.irakurriZenb();
-				agindua="select * from jabea where nan="+jabeNan+";";
-				rs=st.executeQuery(agindua);
-			}
-			else {
-				System.out.println();
-				System.out.println("Ados.");
-				System.out.println("Enter sakatu jarraitzeko.");
-				Teklatua.getNireTeklatua().irakurriEnter();
-			}
-		}}
-		if (erantzuna==true) {
-		agindua= ("INSERT INTO PISUA VALUES('"+id+"', '"+mota+"', '"+prezioGau+"', '"+komunKop+"', '"+m2+"', '"+pkopMax+"', '"+egongela+"', '"+sukaldea+"', '"+kalea+"', '"+kaleZenb+"', '"+solairuZenb+"', '"+pLetra+"', '"+hiriIzena+"', '"+hiriHerrialde+"', '"+jabeNan+"');");
-=======
 		System.out.println("Sartu jaiotze data dd/mm/aaaa");
 		String jaiotzeData= teklado.irakurriData();
 		System.out.println("Sartu telefonoa");
@@ -713,11 +548,8 @@ public class BuscadoraLaExploradora {
 		System.out.println("sartu email-a");
 		String email=teklado.irakurriHitz();
 		String agindua= ("INSERT INTO PISUA VALUES('"+id+"', '"+mota+"', '"+prezioGau+"', '"+komunKop+"', '"+jaiotzeData+"', '"+telefonoa+"', '"+email+"');");
->>>>>>> branch 'master' of https://github.com/jorgementx/BuscadoraExploradora.git
 		System.out.println(agindua);
 		st.execute(agindua);
-		System.out.println("pisua ondo erregistratu da eta bere ID-a hau da:  "+id);
-		}
 	}
 	private void ezabatuPisua() throws SQLException {
 		Statement st=konexioa.createStatement();
