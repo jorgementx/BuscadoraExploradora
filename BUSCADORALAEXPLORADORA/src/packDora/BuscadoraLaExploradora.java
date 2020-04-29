@@ -73,6 +73,7 @@ public class BuscadoraLaExploradora {
 		while (!irten){
 			int aukera=10000;
 			Teklatua teklado= Teklatua.getNireTeklatua();
+			System.out.println();
 			System.out.println("Aukeratu egin nahi duzuna, 1-etik 15-ra");
 			System.out.println("1.- Egin erreserba");
 			System.out.println("2.- Erregistratu bezeroa");
@@ -89,12 +90,13 @@ public class BuscadoraLaExploradora {
 			System.out.println("13.- Lortu jabearen pisuak");
 			System.out.println("14.- Lortu hiriko pisuak");
 			System.out.println("15.- Lortu mota konkretu bateko pisuak hiri konkretu batean");
-			System.out.println("16.- Gau kopurua aldatu");
-			System.out.println("17.- Bezeroaren mugikorra aldatu");
-			System.out.println("18.- Jabea aldatu");
-			System.out.println("19.- Pisuz aldatu");
-			System.out.println("20.- Pisuaren kostua aldatu");
-			System.out.println("21.- Irten");
+			System.out.println("16.- Lortu pisuak (eta kopurua) aukeratutako prezio tartetan");
+			System.out.println("17.- Gau kopurua aldatu");
+			System.out.println("18.- Bezeroaren mugikorra aldatu");
+			System.out.println("19.- Jabea aldatu");
+			System.out.println("20.- Pisuz aldatu");
+			System.out.println("21.- Pisuaren kostua aldatu");
+			System.out.println("22.- Irten");
 			Boolean aukeraEgokia=false;
 			while (!aukeraEgokia){
 				aukera=teklado.irakurriZenb();
@@ -151,7 +153,7 @@ public class BuscadoraLaExploradora {
 				this.motaHiriBatekoPisuaLortu();
 			}
 			else if(aukera==16){
-				
+				this.prezioakTarteka();
 			}
 			else if(aukera==17){
 				
@@ -166,11 +168,19 @@ public class BuscadoraLaExploradora {
 				
 			}
 			else if(aukera==21){
+				
+			}
+			else if(aukera==22){
 				irten=true;
 			}
 		}
 		this.konexioa.close(); //hemen egon behar da agindu hau (konexioa bakarrik itxi programatik irten nahi denean)
 	}
+	private void prezioakTarteka() {
+		//select count(*), round(prezioa/pTartea.0) lag from mytable group by lag;
+		
+	}
+
 	private void pisuLibreak() throws SQLException {
 		// select id , mota from pisua where not exists(select * from erreserba where id = pisuId);
 		Statement st=konexioa.createStatement();
@@ -496,7 +506,7 @@ public class BuscadoraLaExploradora {
 		int telefonoa=teklado.irakurriZenb();
 		System.out.println("sartu email-a");
 		String email=teklado.irakurriHitz();
-		String agindua= ("INSERT INTO PISUA VALUES('"+id+"', '"+izenaB+"', '"+abizenaB1+"', '"+abizenaB2+"', '"+jaiotzeData+"', '"+telefonoa+"', '"+email+"');");
+		String agindua= ("INSERT INTO PISUA VALUES('"+id+"', '"+mota+"', '"+prezioGau+"', '"+komunKop+"', '"+jaiotzeData+"', '"+telefonoa+"', '"+email+"');");
 		System.out.println(agindua);
 		st.execute(agindua);
 	}
