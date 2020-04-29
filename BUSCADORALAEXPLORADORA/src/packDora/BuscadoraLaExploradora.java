@@ -1005,7 +1005,6 @@ public class BuscadoraLaExploradora {
 			st.execute(agindua);
 			System.out.println("Enter sakatu jarraitzeko.");
 			Teklatua.getNireTeklatua().irakurriEnter();
->>>>>>> branch 'master' of https://github.com/jorgementx/BuscadoraExploradora.git
 		}
 	}
 
