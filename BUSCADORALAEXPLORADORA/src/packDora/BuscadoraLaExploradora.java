@@ -19,7 +19,6 @@ import javax.xml.crypto.Data;
 public class BuscadoraLaExploradora {
 	
 	private static BuscadoraLaExploradora nireBuscadoraLaExploradora = null;
-	private BufferedReader br;
 	private Connection konexioa;
 	
 	private BuscadoraLaExploradora() {}
