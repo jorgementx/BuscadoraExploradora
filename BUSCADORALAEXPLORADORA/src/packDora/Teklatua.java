@@ -112,4 +112,18 @@ public class Teklatua{
 		}
 		else return false;
 	}
+	public float irakurriFloat(){
+		float zenb=0;
+		boolean denaOndo=false;
+		do{
+			try{
+				String sar=this.sc.nextLine();
+				zenb= Float.parseFloat(sar);
+				denaOndo=true;
+			}catch(NumberFormatException e){
+				System.out.println("Sartutako neurria zenbakizkoa izan behar da.");
+			}
+		}while(!denaOndo);
+		return zenb;
+	}
 }
