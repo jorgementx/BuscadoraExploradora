@@ -51,7 +51,6 @@ public class BuscadoraLaExploradora {
 	
 	private void buscadoraHasieratu() throws NumberFormatException, IOException, SQLException, ParseException {
 		this.konektatu();
-		br = new BufferedReader(new InputStreamReader(System.in));
 		this.buscadoraMenua();
 	}
 	
