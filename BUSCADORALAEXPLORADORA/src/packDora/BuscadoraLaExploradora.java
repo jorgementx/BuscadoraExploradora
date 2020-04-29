@@ -84,16 +84,17 @@ public class BuscadoraLaExploradora {
 			System.out.println("8.- Ezabatu hiria");
 			System.out.println("9.- Ezabatu pisua");
 			System.out.println("10.- Ezabatu erreserba");
-			System.out.println("11.- Lortu bezeroaren erreserbak edo/eta pisuen prezioa");
-			System.out.println("12.- Lortu jabearen pisuak");
-			System.out.println("13.- Lortu hiriko pisuak");
-			System.out.println("14.- Lortu mota konkretu bateko pisuak hiri konkretu batean");
-			System.out.println("15.- Gau kopurua aldatu");
-			System.out.println("16.- Bezeroaren mugikorra aldatu");
-			System.out.println("17.- Jabea aldatu");
-			System.out.println("18.- Pisuz aldatu");
-			System.out.println("19.- Pisuaren kostua aldatu");
-			System.out.println("20.- Irten");
+			System.out.println("11.- Lortu pisu libreak");
+			System.out.println("12.- Lortu bezeroaren erreserbak edo/eta pisuen prezioa");
+			System.out.println("13.- Lortu jabearen pisuak");
+			System.out.println("14.- Lortu hiriko pisuak");
+			System.out.println("15.- Lortu mota konkretu bateko pisuak hiri konkretu batean");
+			System.out.println("16.- Gau kopurua aldatu");
+			System.out.println("17.- Bezeroaren mugikorra aldatu");
+			System.out.println("18.- Jabea aldatu");
+			System.out.println("19.- Pisuz aldatu");
+			System.out.println("20.- Pisuaren kostua aldatu");
+			System.out.println("21.- Irten");
 			Boolean aukeraEgokia=false;
 			while (!aukeraEgokia){
 				aukera=teklado.irakurriZenb();
@@ -101,7 +102,7 @@ public class BuscadoraLaExploradora {
 					aukeraEgokia=true;
 				}
 				else{
-					System.out.println("Aukeratu 1-etik 20-rako zenbaki bat");
+					System.out.println("Aukeratu 1-etik 21-rako zenbaki bat");
 				}
 			}
 			if (aukera==1){
@@ -134,20 +135,20 @@ public class BuscadoraLaExploradora {
 			else if(aukera==10){
 				this.ezabatuErreserba();
 			}
-			else if(aukera==11){
-				this.ordenatuBezeroak();
+			else if (aukera==11){
+				this.pisuLibreak();
 			}
 			else if(aukera==12){
-				
+				this.ordenatuBezeroak();
 			}
 			else if(aukera==13){
 				
 			}
 			else if(aukera==14){
-				this.motaHiriBatekoPisuaLortu();
+				
 			}
 			else if(aukera==15){
-				
+				this.motaHiriBatekoPisuaLortu();
 			}
 			else if(aukera==16){
 				
@@ -162,11 +163,54 @@ public class BuscadoraLaExploradora {
 				
 			}
 			else if(aukera==20){
+				
+			}
+			else if(aukera==21){
 				irten=true;
 			}
 		}
 		this.konexioa.close(); //hemen egon behar da agindu hau (konexioa bakarrik itxi programatik irten nahi denean)
 	}
+	private void pisuLibreak() throws SQLException {
+		// select id , mota from pisua where not exists(select * from erreserba where id = pisuId);
+		Statement st=konexioa.createStatement();
+		String agindua;
+		System.out.println();
+		
+		agindua="select * from pisua where not exists(select * from erreserba where id = pisuId);";
+		ResultSet rs=st.executeQuery(agindua);
+		if (!rs.first()) {
+			System.out.println();
+			System.out.println("Ez dago pisu librerik momentu honetan, barkatu eragozpenak");
+		}
+		else {
+			agindua="select * from pisua where not exists(select * from erreserba where id = pisuId);";
+			rs=st.executeQuery(agindua);
+			while (rs.next()) {
+				int id=rs.getInt("id");
+				String mota=rs.getString("mota");
+				int prezioGau=rs.getInt("prezioGau");
+				int komunKop=rs.getInt("komunKop");
+				float m2=rs.getFloat("m2");
+				int pertsKopMax=rs.getInt("pertsKopMax");
+				String egongela=rs.getString("egongela");
+				String sukaldea=rs.getString("sukaldea");
+				String kalea=rs.getString("kalea");
+				int zenbakia=rs.getInt("zenbakia");
+				int solairua=rs.getInt("solairua");
+				char letra=rs.getString("letra").charAt(0);
+				String hirizena=rs.getString("hirizena");
+				String hiriHerrialde=rs.getString("hiriHerrialde");
+				int jabeNan=rs.getInt("jabeNan");
+				System.out.format("id: %s, mota: %s, prezioGau: %s, komunKop: %s, m2: %s, pertsKopMax: %s, egongela: %s, sukaldea: %s, kalea: %s, zenbakia: %s, solairua: %s, letra: %s, hirizena: %s, hiriHerrialde: %s, jabeNan: %s\n", id, mota, prezioGau, komunKop, m2, pertsKopMax, egongela, sukaldea, kalea, zenbakia, solairua, letra, hirizena, hiriHerrialde, jabeNan);
+			}
+			System.out.println();
+			System.out.println("Enter sakatu jarraitzeko.");
+			Teklatua.getNireTeklatua().irakurriEnter();
+		}
+		
+	}
+
 	private void ordenatuBezeroak() throws SQLException{ 
 		//ordenatu egingo ditu bezeroak eta haien erreserbak nan-a erakutsiz eta zenbateko kostua daukaten
 		
@@ -614,7 +658,7 @@ public class BuscadoraLaExploradora {
 		}
 	}
 
-	private void gauakAldatu(){
+	private void gauakAldatu() throws SQLException{
 		Teklatua teklado= Teklatua.getNireTeklatua();
 		Statement st=konexioa.createStatement();
 		System.out.println("Gau gehiago nahi al dituzu? (B/E)");
