@@ -85,17 +85,6 @@ public class BuscadoraLaExploradora {
 			System.out.println("8.- Ezabatu hiria");
 			System.out.println("9.- Ezabatu pisua");
 			System.out.println("10.- Ezabatu erreserba");
-<<<<<<< HEAD
-			System.out.println("11.- Lortu bezeroaren erreserbak");
-			System.out.println("12.- Lortu jabearen pisuak");
-			System.out.println("13.- Lortu hiriko pisuak");
-			System.out.println("14.- Lortu mota konkretu bateko pisuak hiri konkretu batean");
-			System.out.println("15.- Gau kopurua aldatu");
-			System.out.println("16.- Bezeroaren mugikorra aldatu");
-			System.out.println("17.- Pisu baten jabea aldatu");
-			System.out.println("18.- Pisuaren kostua aldatu");
-			System.out.println("19.- Irten");
-=======
 			System.out.println("11.- Lortu pisu libreak");
 			System.out.println("12.- Lortu bezeroaren erreserbak edo/eta pisuen prezioa");
 			System.out.println("13.- Lortu jabearen pisuak");
@@ -108,23 +97,14 @@ public class BuscadoraLaExploradora {
 			System.out.println("20.- Pisuz aldatu");
 			System.out.println("21.- Pisuaren kostua aldatu");
 			System.out.println("22.- Irten");
->>>>>>> branch 'master' of https://github.com/jorgementx/BuscadoraExploradora.git
 			Boolean aukeraEgokia=false;
 			while (!aukeraEgokia){
 				aukera=teklado.irakurriZenb();
-<<<<<<< HEAD
-				if (aukera>=1 && aukera<=19){
-=======
 				if (aukera>=1 && aukera<=20){
->>>>>>> branch 'master' of https://github.com/jorgementx/BuscadoraExploradora.git
 					aukeraEgokia=true;
 				}
 				else{
-<<<<<<< HEAD
-					System.out.println("Aukeratu 1-etik 19-rako zenbaki bat");
-=======
 					System.out.println("Aukeratu 1-etik 21-rako zenbaki bat");
->>>>>>> branch 'master' of https://github.com/jorgementx/BuscadoraExploradora.git
 				}
 			}
 			if (aukera==1){
@@ -170,36 +150,18 @@ public class BuscadoraLaExploradora {
 				
 			}
 			else if(aukera==15){
-<<<<<<< HEAD
-				this.gauakAldatu();
-=======
 				this.motaHiriBatekoPisuaLortu();
->>>>>>> branch 'master' of https://github.com/jorgementx/BuscadoraExploradora.git
 			}
 			else if(aukera==16){
-<<<<<<< HEAD
-				this.mugikorraAldatu();
-=======
 				this.prezioakTarteka();
->>>>>>> branch 'master' of https://github.com/jorgementx/BuscadoraExploradora.git
 			}
 			else if(aukera==17){
-<<<<<<< HEAD
-				this.jabeAldatu();
-=======
 				this.gauakAldatu();	
->>>>>>> branch 'master' of https://github.com/jorgementx/BuscadoraExploradora.git
 			}
 			else if(aukera==18){
-<<<<<<< HEAD
-				this.kostuAldatu();
-=======
 				this.mugikorraAldatu();
->>>>>>> branch 'master' of https://github.com/jorgementx/BuscadoraExploradora.git
 			}
 			else if(aukera==19){
-<<<<<<< HEAD
-=======
 				this.jabeAldatu();
 			}
 			else if(aukera==20){
@@ -209,7 +171,6 @@ public class BuscadoraLaExploradora {
 				this.kostuAldatu();
 			}
 			else if(aukera==22){
->>>>>>> branch 'master' of https://github.com/jorgementx/BuscadoraExploradora.git
 				irten=true;
 			}
 		}
@@ -711,17 +672,10 @@ public class BuscadoraLaExploradora {
 			Teklatua.getNireTeklatua().irakurriEnter();
 		}
 	}
-<<<<<<< HEAD
-	private void gauakAldatu() throws NumberFormatException,ParseException,SQLException {
-=======
 
 	private void gauakAldatu() throws NumberFormatException,ParseException,SQLException{
->>>>>>> branch 'master' of https://github.com/jorgementx/BuscadoraExploradora.git
 		Statement st=konexioa.createStatement();
-<<<<<<< HEAD
-=======
 		Teklatua teklado= Teklatua.getNireTeklatua();
->>>>>>> branch 'master' of https://github.com/jorgementx/BuscadoraExploradora.git
 		System.out.println("Sartu zure NAN zenbakia");
 		int pNAN=Teklatua.getNireTeklatua().irakurriZenb();
 		System.out.println();
@@ -739,16 +693,6 @@ public class BuscadoraLaExploradora {
 			System.out.println("Ez da aurkitu erreserbarik hautatutako datuekin");
 			System.out.println("Berriro saiatu nahi duzu? (B/E)");
 			boolean erantzuna=Teklatua.getNireTeklatua().irakurriBaiEz();
-<<<<<<< HEAD
-			if (erantzuna==true) {
-				this.gauakAldatu();
-			}
-			else {
-				System.out.println();
-				System.out.println("Ados.");
-				System.out.println("Enter sakatu jarraitzeko.");
-				Teklatua.getNireTeklatua().irakurriEnter();
-=======
 			if(erantzuna==true){
 				this.gauakAldatu();
 			}
@@ -757,7 +701,6 @@ public class BuscadoraLaExploradora {
 				System.out.println("Ados. ");
 				System.out.println("Enter sakatu jarraitzko. ");
 				Teklatua.getNireTeklatua().irakurriEnter();	
->>>>>>> branch 'master' of https://github.com/jorgementx/BuscadoraExploradora.git
 			}
 		}
 		else{
@@ -765,96 +708,11 @@ public class BuscadoraLaExploradora {
 			int pGauKop=Teklatua.getNireTeklatua().irakurriZenb();
 			System.out.println();
 			agindua="update * from erreserba gauKop='"+pGauKop+"';";
-<<<<<<< HEAD
-			st.execute(agindua);
-			System.out.println("Enter sakatu jarraitzeko.");
-=======
 			st.executate(agindua);
 			System.out.println("Enter sakatu jarraitzko. ");
->>>>>>> branch 'master' of https://github.com/jorgementx/BuscadoraExploradora.git
 			Teklatua.getNireTeklatua().irakurriEnter();
 		}
 	}
-<<<<<<< HEAD
-	private void mugikorraAldatu() throws NumberFormatException,SQLException {
-		Statement st=konexioa.createStatement();
-		String agindua;
-		System.out.println("Sartu zure NAN zenbakia");
-		int pNAN=Teklatua.getNireTeklatua().irakurriZenb();
-		agindua="select * from bezeroa having bezeroNAN='"+pNAN+"';";
-		ResultSet rs=st.executeQuery(agindua);
-		if(!rs.first()){
-			System.out.println();
-			System.out.println("Ez da aurkitu bezerorik");
-			System.out.println("Berriro saiatu nahi duzu? (B/E)");
-			boolean erantzuna=Teklatua.getNireTeklatua().irakurriBaiEz();
-			if (erantzuna==true) {
-				this.mugikorraAldatu();
-			}
-			else {
-				System.out.println();
-				System.out.println("Ados.");
-				System.out.println("Enter sakatu jarraitzeko.");
-				Teklatua.getNireTeklatua().irakurriEnter();
-			}
-		}
-		else{
-		System.out.println();
-		System.out.println("Sartu zure telefono zenbakia berria");
-		int ptelf=Teklatua.getNireTeklatua().irakurriZenb();
-		System.out.println();
-		agindua="update * from bezeroa telef='"+ptelf+"';";
-		st.execute(agindua);
-		System.out.println("Enter sakatu jarraitzeko.");
-		Teklatua.getNireTeklatua().irakurriEnter();
-		}
-	}
-	private void jabeAldatu() throws NumberFormatException,SQLException {
-		Statement st=konexioa.createStatement();
-		String agindua;
-		System.out.println("Sartu pisuaren id-a");
-		int pID=Teklatua.getNireTeklatua().irakurriZenb();
-		agindua="select * from pisua having id='"+pID+"';";
-		ResultSet rs=st.executeQuery(agindua);
-		if(!rs.first()){
-			System.out.println();
-			System.out.println("Ez da aurkitu pisurik");
-			System.out.println("Berriro saiatu nahi duzu? (B/E)");
-			boolean erantzuna=Teklatua.getNireTeklatua().irakurriBaiEz();
-			if (erantzuna==true) {
-				this.kostuAldatu();
-			}
-			else {
-				System.out.println();
-				System.out.println("Ados.");
-				System.out.println("Enter sakatu jarraitzeko.");
-				Teklatua.getNireTeklatua().irakurriEnter();
-			}
-		}
-		else{
-			System.out.println();
-			System.out.println("Sartu jabearen NAN-a");
-			int pNAN=Teklatua.getNireTeklatua().irakurriZenb();
-			System.out.println();
-			System.out.println("Sartu jabearen izena");
-			String pIzen=Teklatua.getNireTeklatua().irakurriHitz();
-			System.out.println();
-			System.out.println("Sartu jabearen telefono zenbakia");
-			int ptelf=Teklatua.getNireTeklatua().irakurriZenb();
-			System.out.println();
-			System.out.println("Sartu jabearen email-a");
-			String pEmail=Teklatua.getNireTeklatua().irakurriHitz();
-			System.out.println();
-			System.out.println("Sartu jabearen banku kontu zenbakia");
-			int pbank=Teklatua.getNireTeklatua().irakurriZenb();
-			System.out.println();
-			agindua="update * from pisua jabeNan='"+pNAN+"';";
-			st.execute(agindua);
-			System.out.println("Enter sakatu jarraitzeko.");
-			Teklatua.getNireTeklatua().irakurriEnter();
-		}
-		
-=======
 	private void mugikorraAldatu(){
 		Statement st=konexioa.createStatement();
 		Teklatua teklado= Teklatua.getNireTeklatua();
@@ -888,42 +746,7 @@ public class BuscadoraLaExploradora {
 			System.out.println("Enter sakatu jarraitzko. ");
 			Teklatua.getNireTeklatua().irakurriEnter();
 		}
->>>>>>> branch 'master' of https://github.com/jorgementx/BuscadoraExploradora.git
 	}
-<<<<<<< HEAD
-
-	private void kostuAldatu() throws NumberFormatException,SQLException {
-		Statement st=konexioa.createStatement();
-		String agindua;
-		System.out.println("Sartu pisuaren id-a");
-		int pID=Teklatua.getNireTeklatua().irakurriZenb();
-		agindua="select * from pisua having id='"+pID+"';";
-		ResultSet rs=st.executeQuery(agindua);
-		if(!rs.first()){
-			System.out.println();
-			System.out.println("Ez da aurkitu pisurik");
-			System.out.println("Berriro saiatu nahi duzu? (B/E)");
-			boolean erantzuna=Teklatua.getNireTeklatua().irakurriBaiEz();
-			if (erantzuna==true) {
-				this.kostuAldatu();
-			}
-			else {
-				System.out.println();
-				System.out.println("Ados.");
-				System.out.println("Enter sakatu jarraitzeko.");
-				Teklatua.getNireTeklatua().irakurriEnter();
-			}
-		}
-		else{
-		System.out.println();
-		System.out.println("Sartu pisuaren prezioa berria gauero");
-		int pPrezio=Teklatua.getNireTeklatua().irakurriZenb();
-		System.out.println();
-		agindua="update * from pisua prezioGau='"+pPrezio+"';";
-		st.execute(agindua);
-		System.out.println("Enter sakatu jarraitzeko.");
-		Teklatua.getNireTeklatua().irakurriEnter();
-=======
 	private void jabeAldatu() throws NumberFormatException,SQLException {
 		Statement st=konexioa.createStatement();
 		Teklatua teklado= Teklatua.getNireTeklatua();
@@ -1009,3 +832,4 @@ public class BuscadoraLaExploradora {
 	}
 
 }
+
