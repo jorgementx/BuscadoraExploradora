@@ -636,7 +636,6 @@ public class BuscadoraLaExploradora {
 		int prezioGau=teklado.irakurriZenb();
 		System.out.println("Sartu komun kopurua:");
 		int komunKop=teklado.irakurriZenb();
-<<<<<<< HEAD
 		System.out.println("Sartu metro karratuak");
 		float m2= teklado.irakurriFloat();
 		System.out.println("Sartu pertsona kopuru maximoa");
@@ -705,15 +704,6 @@ public class BuscadoraLaExploradora {
 		}}
 		if (erantzuna==true) {
 		agindua= ("INSERT INTO PISUA VALUES('"+id+"', '"+mota+"', '"+prezioGau+"', '"+komunKop+"', '"+m2+"', '"+pkopMax+"', '"+egongela+"', '"+sukaldea+"', '"+kalea+"', '"+kaleZenb+"', '"+solairuZenb+"', '"+pLetra+"', '"+hiriIzena+"', '"+hiriHerrialde+"', '"+jabeNan+"');");
-=======
-		System.out.println("Sartu jaiotze data dd/mm/aaaa");
-		String jaiotzeData= teklado.irakurriData();
-		System.out.println("Sartu telefonoa");
-		int telefonoa=teklado.irakurriZenb();
-		System.out.println("sartu email-a");
-		String email=teklado.irakurriHitz();
-		String agindua= ("INSERT INTO PISUA VALUES('"+id+"', '"+mota+"', '"+prezioGau+"', '"+komunKop+"', '"+jaiotzeData+"', '"+telefonoa+"', '"+email+"');");
->>>>>>> branch 'master' of https://github.com/jorgementx/BuscadoraExploradora.git
 		System.out.println(agindua);
 		st.execute(agindua);
 		System.out.println("pisua ondo erregistratu da eta bere ID-a hau da:  "+id);
