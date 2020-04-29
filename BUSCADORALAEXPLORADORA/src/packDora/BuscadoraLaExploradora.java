@@ -106,7 +106,7 @@ public class BuscadoraLaExploradora {
 				}
 			}
 			if (aukera==1){
-				this.eginReserba();
+				this.eginReserba(); 
 			}
 			else if (aukera==2){
 				this.sartuBezeroa();
