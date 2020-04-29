@@ -642,6 +642,8 @@ public class BuscadoraLaExploradora {
 			System.out.println();
 			agindua="update * from pisua jabeNan='"+pNAN+"';";
 			st.execute(agindua);
+			System.out.println("Enter sakatu jarraitzeko.");
+			Teklatua.getNireTeklatua().irakurriEnter();
 		}
 		
 	}
@@ -675,6 +677,8 @@ public class BuscadoraLaExploradora {
 		System.out.println();
 		agindua="update * from pisua prezioGau='"+pPrezio+"';";
 		st.execute(agindua);
+		System.out.println("Enter sakatu jarraitzeko.");
+		Teklatua.getNireTeklatua().irakurriEnter();
 		}
 	}
 }
