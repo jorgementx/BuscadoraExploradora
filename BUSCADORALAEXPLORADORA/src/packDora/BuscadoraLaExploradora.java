@@ -902,7 +902,7 @@ public class BuscadoraLaExploradora {
 			System.out.println("Berriro saiatu nahi duzu? (B/E)");
 			boolean erantzuna=Teklatua.getNireTeklatua().irakurriBaiEz();
 			if(erantzuna==true){
-				this.gauakAldatu();
+				this.mugikorraAldatu();
 			}
 			else{
 				System.out.println();
@@ -917,7 +917,7 @@ public class BuscadoraLaExploradora {
 			int ptelf=Teklatua.getNireTeklatua().irakurriZenb();
 			System.out.println();
 			agindua="update * from bezeroa telef='"+ptelf+"';";
-			st.execute(agindua);
+			st.executeQuery(agindua);
 			System.out.println("Enter sakatu jarraitzko. ");
 			Teklatua.getNireTeklatua().irakurriEnter();
 		}
