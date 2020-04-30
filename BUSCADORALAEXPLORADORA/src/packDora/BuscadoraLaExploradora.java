@@ -84,8 +84,8 @@ public class BuscadoraLaExploradora {
 			System.out.println("9.- Ezabatu pisua");
 			System.out.println("10.- Ezabatu erreserba");
 			System.out.println("11.- Lortu pisu libreak");
-			System.out.println("12.- Lortu bezeroaren erreserbak edo/eta pisuen prezioa");
-			System.out.println("13.- Lortu jabearen pisuak");
+			System.out.println("12.- Lortu bezeroaren erreserbak");
+			System.out.println("13.- Begiratu pisuen prezioak");
 			System.out.println("14.- Lortu hiriko pisuak");
 			System.out.println("15.- Lortu mota konkretu bateko pisuak hiri konkretu batean");
 			System.out.println("16.- Lortu pisuak aukeratutako prezio tartetan");
@@ -142,7 +142,7 @@ public class BuscadoraLaExploradora {
 				this.ordenatuBezeroak();
 			}
 			else if(aukera==13){
-				
+				this.ordenatuPisuaPrezioa();
 			}
 			else if(aukera==14){
 				
@@ -261,9 +261,9 @@ public class BuscadoraLaExploradora {
 		//ordenatu egingo ditu bezeroak eta haien erreserbak nan-a erakutsiz eta zenbateko kostua daukaten
 		
 		Statement st=konexioa.createStatement();
-		System.out.println("Begiratu nahi dituzu bezeroen erreserbak? Bai edo ez");
-		boolean erantzuna=Teklatua.getNireTeklatua().irakurriBaiEz();
-		if(erantzuna){
+		//System.out.println("Begiratu nahi dituzu bezeroen erreserbak? Bai edo ez");
+		//boolean erantzuna=Teklatua.getNireTeklatua().irakurriBaiEz();
+		//if(erantzuna){
 			String agindua="select nan,abi1,abi2,kostua,pisuId,sarreraD from bezeroa,erreserba where bezeroNan=nan order by nan desc ,abi1,abi2,kostua desc,pisuId,sarreraD desc";
 			ResultSet rs=st.executeQuery(agindua);
 			if(!rs.first()){
@@ -285,8 +285,8 @@ public class BuscadoraLaExploradora {
 			System.out.println();
 			System.out.println("Enter sakatu jarraitzeko.");
 			Teklatua.getNireTeklatua().irakurriEnter();
-			System.out.println("Orain begiratu nahi dituzu pisuen prezioa gau batez?");
-			boolean emaitza=Teklatua.getNireTeklatua().irakurriBaiEz();
+			//System.out.println("Orain begiratu nahi dituzu pisuen prezioa gau batez?");
+			/*boolean emaitza=Teklatua.getNireTeklatua().irakurriBaiEz();
 				if(emaitza){
 					this.ordenatuPisuaPrezioa();
 					System.out.println("Enter sakatu jarraitzeko.");
@@ -295,16 +295,16 @@ public class BuscadoraLaExploradora {
 				else{
 					System.out.println("Enter sakatu jarraitzeko.");
 					Teklatua.getNireTeklatua().irakurriEnter();
-				}
+				}*/
 			}	
 			
-		}
-		else{
+		//}
+		/*else{
 			this.ordenatuPisuaPrezioa();
 			System.out.println();
 			System.out.println("Enter sakatu jarraitzeko.");
 			Teklatua.getNireTeklatua().irakurriEnter();
-		}
+		}*/
 	}
 	
 	private void ordenatuPisuaPrezioa() throws SQLException{
@@ -322,6 +322,9 @@ public class BuscadoraLaExploradora {
 				int Id=rs.getInt("id");
 				System.out.println("Prezio Gau: "+PrezioGau+" Id-a: "+Id);
 			}
+			System.out.println();
+			System.out.println("Enter sakatu jarraitzeko.");
+			Teklatua.getNireTeklatua().irakurriEnter();
 		}
 	}
 	private void eginErreserba() throws SQLException, ParseException {
