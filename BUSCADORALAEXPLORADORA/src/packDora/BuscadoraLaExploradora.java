@@ -72,7 +72,7 @@ public class BuscadoraLaExploradora {
 			int aukera=10000;
 			Teklatua teklado= Teklatua.getNireTeklatua();
 			System.out.println();
-			System.out.println("Aukeratu egin nahi duzuna, 1-etik 15-ra");
+			System.out.println("Aukeratu egin nahi duzuna, 1-etik 20-ra");
 			System.out.println("1.- Egin erreserba");
 			System.out.println("2.- Erregistratu bezeroa");
 			System.out.println("3.- Erregistratu jabea");
@@ -86,23 +86,21 @@ public class BuscadoraLaExploradora {
 			System.out.println("11.- Lortu pisu libreak");
 			System.out.println("12.- Lortu bezeroaren erreserbak");
 			System.out.println("13.- Begiratu pisuen prezioak");
-			System.out.println("14.- Lortu hiriko pisuak");
-			System.out.println("15.- Lortu mota konkretu bateko pisuak hiri konkretu batean");
-			System.out.println("16.- Lortu pisuak aukeratutako prezio tartetan");
-			System.out.println("17.- Gau kopurua aldatu");
-			System.out.println("18.- Bezeroaren mugikorra aldatu");
-			System.out.println("19.- Pisu baten jabea aldatu");
-			System.out.println("20.- Pisuz aldatu");
-			System.out.println("21.- Pisuaren kostua aldatu");
-			System.out.println("22.- Irten");
+			System.out.println("14.- Lortu mota konkretu bateko pisuak hiri konkretu batean");
+			System.out.println("15.- Lortu pisuak aukeratutako prezio tartetan");
+			System.out.println("16.- Gau kopurua aldatu");
+			System.out.println("17.- Bezeroaren mugikorra aldatu");
+			System.out.println("18.- Pisu baten jabea aldatu");
+			System.out.println("19.- Pisuaren kostua aldatu");
+			System.out.println("20.- Irten");
 			Boolean aukeraEgokia=false;
 			while (!aukeraEgokia){
 				aukera=teklado.irakurriZenb();
-				if (aukera>=1 && aukera<=22){
+				if (aukera>=1 && aukera<=20){
 					aukeraEgokia=true;
 				}
 				else{
-					System.out.println("Aukeratu 1-etik 22-rako zenbaki bat");
+					System.out.println("Aukeratu 1-etik 20-rako zenbaki bat");
 				}
 			}
 			if (aukera==1){
@@ -145,30 +143,24 @@ public class BuscadoraLaExploradora {
 				this.ordenatuPisuaPrezioa();
 			}
 			else if(aukera==14){
-				
-			}
-			else if(aukera==15){
 				this.motaHiriBatekoPisuaLortu();
 			}
-			else if(aukera==16){
+			else if(aukera==15){
 				this.prezioakTarteka();
 			}
-			else if(aukera==17){
+			else if(aukera==16){
 				this.gauakAldatu();	
 			}
-			else if(aukera==18){
+			else if(aukera==17){
 				this.mugikorraAldatu();
 			}
-			else if(aukera==19){
+			else if(aukera==18){
 				this.jabeAldatu();
 			}
-			else if(aukera==20){
-				
-			}
-			else if(aukera==21){
+			else if(aukera==19){
 				this.kostuAldatu();
 			}
-			else if(aukera==22){
+			else if(aukera==20){
 				irten=true;
 			}
 		}
@@ -850,7 +842,6 @@ public class BuscadoraLaExploradora {
 
 	private void gauakAldatu() throws NumberFormatException,ParseException,SQLException{
 		Statement st=konexioa.createStatement();
-		Teklatua teklado= Teklatua.getNireTeklatua();
 		System.out.println("Sartu zure NAN zenbakia");
 		int pNAN=Teklatua.getNireTeklatua().irakurriZenb();
 		System.out.println();
@@ -890,7 +881,6 @@ public class BuscadoraLaExploradora {
 	}
 	private void mugikorraAldatu() throws SQLException, NumberFormatException, ParseException{
 		Statement st=konexioa.createStatement();
-		Teklatua teklado= Teklatua.getNireTeklatua();
 		String agindua;
 		System.out.println("Sartu zure NAN zenbakia");	
 		int pNAN=Teklatua.getNireTeklatua().irakurriZenb();
@@ -924,7 +914,6 @@ public class BuscadoraLaExploradora {
 	}
 	private void jabeAldatu() throws NumberFormatException,SQLException {
 		Statement st=konexioa.createStatement();
-		Teklatua teklado= Teklatua.getNireTeklatua();
 		String agindua;
 		System.out.println("Sartu pisuaren id-a");
 		int pID=Teklatua.getNireTeklatua().irakurriZenb();
@@ -968,12 +957,8 @@ public class BuscadoraLaExploradora {
 			Teklatua.getNireTeklatua().irakurriEnter();
 		}
 	}
-	private void pisuzAldatu(){
-		
-	}
 	private void kostuAldatu() throws NumberFormatException,SQLException {
 		Statement st=konexioa.createStatement();
-		Teklatua teklado= Teklatua.getNireTeklatua();
 		String agindua;
 		System.out.println("Sartu pisuaren id-a");
 		int pID=Teklatua.getNireTeklatua().irakurriZenb();
